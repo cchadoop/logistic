@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.sys.mapper.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.sys.queryview.EmployeeQueryView">
+    <id column="emp_id" jdbcType="VARCHAR" property="empId" />
+    <result column="emp_code" jdbcType="VARCHAR" property="empCode" />
+    <result column="emp_account" jdbcType="VARCHAR" property="empAccount" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="emp_password" jdbcType="VARCHAR" property="empPassword" />
+    <result column="emp_sex" jdbcType="VARCHAR" property="empSex" />
+    <result column="emp_birthday" jdbcType="DATE" property="empBirthday" />
+    <result column="emp_live_address" jdbcType="VARCHAR" property="empLiveAddress" />
+    <result column="emp_work_address" jdbcType="VARCHAR" property="empWorkAddress" />
+    <result column="emp_phone" jdbcType="VARCHAR" property="empPhone" />
+    <result column="emp_worktime" jdbcType="DATE" property="empWorktime" />
+    <result column="emp_salary" jdbcType="DECIMAL" property="empSalary" />
+    <result column="emp_email" jdbcType="VARCHAR" property="empEmail" />
+    <result column="emp_idcard" jdbcType="VARCHAR" property="empIdcard" />
+    <result column="emp_bankcode" jdbcType="VARCHAR" property="empBankcode" />
+    <result column="emp_work_status" jdbcType="VARCHAR" property="empWorkStatus" />
+    <result column="emp_marry_status" jdbcType="VARCHAR" property="empMarryStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    emp_id, emp_code, emp_account,emp_name, emp_password, emp_sex, emp_birthday, emp_live_address, 
+    emp_work_address, emp_phone, emp_worktime, emp_salary, emp_email, emp_idcard, emp_bankcode, 
+    emp_work_status, emp_marry_status
+  </sql>
+  <select id="selectByExample" parameterType="com.jxlg.logistic.sys.entity.EmployeeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sys_emp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_emp
+    where emp_id = #{empId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_emp
+    where emp_id = #{empId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.sys.entity.EmployeeExample">
+    delete from sys_emp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jxlg.logistic.sys.entity.Employee">
+    insert into sys_emp (emp_id, emp_code, emp_account,emp_name, 
+      emp_password, emp_sex, emp_birthday, 
+      emp_live_address, emp_work_address, emp_phone, 
+      emp_worktime, emp_salary, emp_email, 
+      emp_idcard, emp_bankcode, emp_work_status, 
+      emp_marry_status)
+    values (#{empId,jdbcType=VARCHAR}, #{empCode,jdbcType=VARCHAR}, #{empAccount,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, 
+      #{empPassword,jdbcType=VARCHAR}, #{empSex,jdbcType=VARCHAR}, #{empBirthday,jdbcType=DATE}, 
+      #{empLiveAddress,jdbcType=VARCHAR}, #{empWorkAddress,jdbcType=VARCHAR}, #{empPhone,jdbcType=VARCHAR}, 
+      #{empWorktime,jdbcType=DATE}, #{empSalary,jdbcType=DECIMAL}, #{empEmail,jdbcType=VARCHAR}, 
+      #{empIdcard,jdbcType=VARCHAR}, #{empBankcode,jdbcType=VARCHAR}, #{empWorkStatus,jdbcType=VARCHAR}, 
+      #{empMarryStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.sys.entity.Employee">
+    insert into sys_emp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        emp_id,
+      </if>
+      <if test="empCode != null">
+        emp_code,
+      </if>
+      <if test="empAccount != null">
+        emp_account,
+      </if>
+      <if test="empName != null">
+        emp_name,
+      </if>
+      <if test="empPassword != null">
+        emp_password,
+      </if>
+      <if test="empSex != null">
+        emp_sex,
+      </if>
+      <if test="empBirthday != null">
+        emp_birthday,
+      </if>
+      <if test="empLiveAddress != null">
+        emp_live_address,
+      </if>
+      <if test="empWorkAddress != null">
+        emp_work_address,
+      </if>
+      <if test="empPhone != null">
+        emp_phone,
+      </if>
+      <if test="empWorktime != null">
+        emp_worktime,
+      </if>
+      <if test="empSalary != null">
+        emp_salary,
+      </if>
+      <if test="empEmail != null">
+        emp_email,
+      </if>
+      <if test="empIdcard != null">
+        emp_idcard,
+      </if>
+      <if test="empBankcode != null">
+        emp_bankcode,
+      </if>
+      <if test="empWorkStatus != null">
+        emp_work_status,
+      </if>
+      <if test="empMarryStatus != null">
+        emp_marry_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="empId != null">
+        #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="empCode != null">
+        #{empCode,jdbcType=VARCHAR},
+      </if>
+      <if test="empAccount != null">
+        #{empAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empPassword != null">
+        #{empPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="empSex != null">
+        #{empSex,jdbcType=VARCHAR},
+      </if>
+      <if test="empBirthday != null">
+        #{empBirthday,jdbcType=DATE},
+      </if>
+      <if test="empLiveAddress != null">
+        #{empLiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empWorkAddress != null">
+        #{empWorkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empPhone != null">
+        #{empPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="empWorktime != null">
+        #{empWorktime,jdbcType=DATE},
+      </if>
+      <if test="empSalary != null">
+        #{empSalary,jdbcType=DECIMAL},
+      </if>
+      <if test="empEmail != null">
+        #{empEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="empIdcard != null">
+        #{empIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="empBankcode != null">
+        #{empBankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="empWorkStatus != null">
+        #{empWorkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="empMarryStatus != null">
+        #{empMarryStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jxlg.logistic.sys.entity.EmployeeExample" resultType="java.lang.Long">
+    select count(*) from sys_emp
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_emp
+    <set>
+      <if test="record.empId != null">
+        emp_id = #{record.empId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empCode != null">
+        emp_code = #{record.empCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empAccount != null">
+        emp_account = #{record.empAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empName != null">
+        emp_name = #{record.empName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empPassword != null">
+        emp_password = #{record.empPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empSex != null">
+        emp_sex = #{record.empSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empBirthday != null">
+        emp_birthday = #{record.empBirthday,jdbcType=DATE},
+      </if>
+      <if test="record.empLiveAddress != null">
+        emp_live_address = #{record.empLiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empWorkAddress != null">
+        emp_work_address = #{record.empWorkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empPhone != null">
+        emp_phone = #{record.empPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empWorktime != null">
+        emp_worktime = #{record.empWorktime,jdbcType=DATE},
+      </if>
+      <if test="record.empSalary != null">
+        emp_salary = #{record.empSalary,jdbcType=DECIMAL},
+      </if>
+      <if test="record.empEmail != null">
+        emp_email = #{record.empEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empIdcard != null">
+        emp_idcard = #{record.empIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empBankcode != null">
+        emp_bankcode = #{record.empBankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empWorkStatus != null">
+        emp_work_status = #{record.empWorkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empMarryStatus != null">
+        emp_marry_status = #{record.empMarryStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_emp
+    set emp_id = #{record.empId,jdbcType=VARCHAR},
+      emp_code = #{record.empCode,jdbcType=VARCHAR},
+      emp_account = #{record.empAccount,jdbcType=VARCHAR},
+      emp_name = #{record.empName,jdbcType=VARCHAR},
+      emp_password = #{record.empPassword,jdbcType=VARCHAR},
+      emp_sex = #{record.empSex,jdbcType=VARCHAR},
+      emp_birthday = #{record.empBirthday,jdbcType=DATE},
+      emp_live_address = #{record.empLiveAddress,jdbcType=VARCHAR},
+      emp_work_address = #{record.empWorkAddress,jdbcType=VARCHAR},
+      emp_phone = #{record.empPhone,jdbcType=VARCHAR},
+      emp_worktime = #{record.empWorktime,jdbcType=DATE},
+      emp_salary = #{record.empSalary,jdbcType=DECIMAL},
+      emp_email = #{record.empEmail,jdbcType=VARCHAR},
+      emp_idcard = #{record.empIdcard,jdbcType=VARCHAR},
+      emp_bankcode = #{record.empBankcode,jdbcType=VARCHAR},
+      emp_work_status = #{record.empWorkStatus,jdbcType=VARCHAR},
+      emp_marry_status = #{record.empMarryStatus,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.sys.entity.Employee">
+    update sys_emp
+    <set>
+      <if test="empCode != null">
+        emp_code = #{empCode,jdbcType=VARCHAR},
+      </if>
+      <if test="empAccount != null">
+        emp_account = #{empAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="empName != null">
+        emp_name = #{empName,jdbcType=VARCHAR},
+      </if>
+      <if test="empPassword != null">
+        emp_password = #{empPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="empSex != null">
+        emp_sex = #{empSex,jdbcType=VARCHAR},
+      </if>
+      <if test="empBirthday != null">
+        emp_birthday = #{empBirthday,jdbcType=DATE},
+      </if>
+      <if test="empLiveAddress != null">
+        emp_live_address = #{empLiveAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empWorkAddress != null">
+        emp_work_address = #{empWorkAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="empPhone != null">
+        emp_phone = #{empPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="empWorktime != null">
+        emp_worktime = #{empWorktime,jdbcType=DATE},
+      </if>
+      <if test="empSalary != null">
+        emp_salary = #{empSalary,jdbcType=DECIMAL},
+      </if>
+      <if test="empEmail != null">
+        emp_email = #{empEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="empIdcard != null">
+        emp_idcard = #{empIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="empBankcode != null">
+        emp_bankcode = #{empBankcode,jdbcType=VARCHAR},
+      </if>
+      <if test="empWorkStatus != null">
+        emp_work_status = #{empWorkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="empMarryStatus != null">
+        emp_marry_status = #{empMarryStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where emp_id = #{empId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.sys.entity.Employee">
+    update sys_emp
+    set emp_code = #{empCode,jdbcType=VARCHAR},
+	  emp_account = #{empAccount,jdbcType=VARCHAR},
+      emp_name = #{empName,jdbcType=VARCHAR},
+      emp_password = #{empPassword,jdbcType=VARCHAR},
+      emp_sex = #{empSex,jdbcType=VARCHAR},
+      emp_birthday = #{empBirthday,jdbcType=DATE},
+      emp_live_address = #{empLiveAddress,jdbcType=VARCHAR},
+      emp_work_address = #{empWorkAddress,jdbcType=VARCHAR},
+      emp_phone = #{empPhone,jdbcType=VARCHAR},
+      emp_worktime = #{empWorktime,jdbcType=DATE},
+      emp_salary = #{empSalary,jdbcType=DECIMAL},
+      emp_email = #{empEmail,jdbcType=VARCHAR},
+      emp_idcard = #{empIdcard,jdbcType=VARCHAR},
+      emp_bankcode = #{empBankcode,jdbcType=VARCHAR},
+      emp_work_status = #{empWorkStatus,jdbcType=VARCHAR},
+      emp_marry_status = #{empMarryStatus,jdbcType=VARCHAR}
+    where emp_id = #{empId,jdbcType=VARCHAR}
+  </update>
+</mapper>

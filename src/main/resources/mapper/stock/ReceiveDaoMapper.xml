@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.stock.mapper.ReceiveDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.stock.queryview.ReceiveQueryView">
+    <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
+    <result column="receive_no" jdbcType="VARCHAR" property="receiveNo" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="receive_person" jdbcType="VARCHAR" property="receivePerson" />
+    <result column="receive_time" jdbcType="TIMESTAMP" property="receiveTime" />
+    <result column="receive_status" jdbcType="VARCHAR" property="receiveStatus" />
+    <result column="receive_way" jdbcType="VARCHAR" property="receiveWay" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="confirm_addr" jdbcType="VARCHAR" property="confirmAddr" />
+    <result column="confirm_person" jdbcType="VARCHAR" property="confirmPerson" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="receiveStatusOptionLabel" jdbcType="VARCHAR" property="receiveStatusOptionLabel" />
+    <result column="receiveWayOptionLabel" jdbcType="VARCHAR" property="receiveWayOptionLabel" />
+  </resultMap>
+  
+  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.stock.condition.ReceiveCondition">
+  	SELECT
+	r.*,
+	o.order_no,
+	d1.OPTION_LABEL AS receiveStatusOptionLabel,
+	d2.OPTION_LABEL AS receiveWayOptionLabel 
+	FROM
+	s_receive r
+	LEFT JOIN o_order o ON r.order_id = o.order_id
+	LEFT JOIN data_dictionary_detail d1 ON r.receive_status = d1.DICTIONARY_DETAIL_LABEL
+	LEFT JOIN data_dictionary_detail d2 ON r.receive_way = d2.DICTIONARY_DETAIL_LABEL
+	<where>
+		<if test="orderId !=null">
+			AND r.order_id  =#{orderId}
+		</if>
+		<if test="minDate !=null">
+			AND r.receive_time &gt; #{minDate}
+		</if>
+		<if test="maxDate !=null">
+			AND r.receive_time &lt; #{maxDate}
+		</if>
+	</where>
+  </select>
+  </mapper>

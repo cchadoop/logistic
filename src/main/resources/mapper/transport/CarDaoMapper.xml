@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.transport.mapper.CarDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.transport.queryview.CarQueryView">
+    <id column="car_id" jdbcType="VARCHAR" property="carId" />
+    <result column="car_no" jdbcType="VARCHAR" property="carNo" />
+    <result column="cartype_id" jdbcType="VARCHAR" property="cartypeId" />
+    <result column="tonnage" jdbcType="DECIMAL" property="tonnage" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="buy_time" jdbcType="TIMESTAMP" property="buyTime" />
+    <result column="leave_time" jdbcType="TIMESTAMP" property="leaveTime" />
+    <result column="car_status" jdbcType="VARCHAR" property="carStatus" />
+    <result column="line_id" jdbcType="VARCHAR" property="lineId" />
+    <result column="driver_id" jdbcType="VARCHAR" property="driverId" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="cartype_name" jdbcType="VARCHAR" property="cartypeName" />
+    <result column="line_no" jdbcType="VARCHAR" property="lineNo" />
+    <result column="driver_name" jdbcType="VARCHAR" property="driverName" />
+     <result column="carStatusOptionLabel" jdbcType="VARCHAR" property="carStatusOptionLabel" />
+  </resultMap>
+  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.transport.entity.Car">
+  	SELECT
+	c.*,
+	ct.cartype_name,
+	l.line_no,
+	d.driver_name,
+	dd.OPTION_LABEL AS carStatusOptionLabel 
+FROM
+	t_car c
+	LEFT JOIN t_cartype ct ON c.cartype_id = ct.cartype_id
+	LEFT JOIN t_line l ON c.line_id = l.line_id
+	LEFT JOIN t_driver d ON c.driver_id = d.driver_id
+	LEFT JOIN data_dictionary_detail dd ON c.car_status = dd.DICTIONARY_DETAIL_LABEL
+	<where>
+		<if test="cartypeId !=null">
+			AND c.cartype_id = #{cartypeId}
+		</if>
+		<if test="driverId !=null">
+			AND c.driver_id = #{driverId}
+		</if>
+	</where>
+  </select>
+ </mapper>

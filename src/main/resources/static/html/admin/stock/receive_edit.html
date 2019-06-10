@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../../css/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/themes/icon.css">
+			<link rel="stylesheet" type="text/css" href="../../../css/common.css">
+
+		<script type="text/javascript" src="../../../js/framework/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../js/framework/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../js/framework/easyui-lang-zh_CN.js"></script>
+
+		<title></title>
+		
+		<style>
+			
+			.
+			
+		</style>
+
+	</head>
+
+	<body style="margin: 0;">
+
+	
+	<div class="easyui-panel" data-options="fit:true,border:false"; title="收货作业新增|收货作业修改" style="width:100%;">
+		<div style="padding:10px 60px 20px 10px">
+	    <form  method="post">
+	    	<ul class="form_layout">
+
+	    		<li style="display: none;">
+	    			<span>ID</span>
+	    			
+	    			<input class="easyui-textbox"  id="receive_id" name="receive_id"/>
+	    		</li>
+	    		<li>
+	    			<span>编号</span>
+	    			
+	    			<input class="easyui-textbox"  id="receive_no" name="receive_no"/>
+	    		</li>
+	    		<li>
+	    			<span>订单编号</span>
+	    			
+	    			<input class="easyui-combobox"  id="order_id" name="order_id"/>
+	    		</li>
+	    		<li>
+	    			<span>收货人</span>
+	    			
+	    			<input class="easyui-textbox"  id="receive_person" name="receive_person"/>
+	    		</li>
+	    		<li>
+	    			<span>收货时间</span>
+	    			
+	    			<input class="easyui-datetimebox"  id="receive_time" name="receive_time"/>
+	    		</li>
+	    		<li>
+	    			<span>收货状态</span>
+	    			
+	    			<input class="easyui-combobox"  id="receive_status" name="receive_status"/>
+	    		</li>
+	    		<li>
+	    			<span>收货方式</span>
+	    			
+	    			<input class="easyui-combobox"  id="receive_way" name="receive_way"/>
+	    		</li>
+	    		<li>
+	    			<span>确认时间</span>
+	    			
+	    			<input class="easyui-datetimebox"  id="confirm_time" name="confirm_time"/>
+	    		</li>
+	    		<li>
+	    			<span>确认地址</span>
+	    			
+	    			<input class="easyui-textbox"  id="confirm_addr" name="confirm_addr"/>
+	    		</li>
+	    		<li>
+	    			<span>确认人</span>
+	    			
+	    			<input class="easyui-textbox"  id="confirm_person" name="confirm_person"/>
+	    		</li>
+	    	</ul>
+	    </form>
+	    <div style="text-align:center;padding:5px">
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">关闭</a>
+	    </div>
+	    </div>
+	</div>
+		
+
+	</body>
+
+</html>

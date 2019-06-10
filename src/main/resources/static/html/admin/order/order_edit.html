@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../../css/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/themes/icon.css">
+			<link rel="stylesheet" type="text/css" href="../../../css/common.css">
+
+		<script type="text/javascript" src="../../../js/framework/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../js/framework/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../js/framework/easyui-lang-zh_CN.js"></script>
+
+		<title></title>
+		
+		<style>
+			
+			.form_layout>li>span{
+				width:90px;
+			}
+			
+		</style>
+
+	</head>
+
+	<body style="margin: 0;">
+
+	
+	<div class="easyui-panel" data-options="fit:true,border:false"; title="订单新增|订单修改" style="width:100%;">
+		<div style="padding:10px 60px 20px 10px">
+	    <form  method="post">
+	    	<ul class="form_layout">
+
+	    		<li style="display: none;">
+	    			<span>ID</span>
+	    			
+	    			<input class="easyui-textbox"  id="order_id" name="order_id"/>
+	    		</li>
+	    		<li>
+	    			<span>编号</span>
+	    			
+	    			<input class="easyui-textbox"  id="order_no" name="order_no"/>
+	    		</li>
+	    		<li>
+	    			<span>寄件人</span>
+	    			
+	    			<input class="easyui-textbox"  id="send_name" name="send_name"/>
+	    		</li>
+	    		<li>
+	    			<span>寄件人地址</span>
+	    			
+	    			<input class="easyui-textbox"  id="send_addr" name="send_addr"/>
+	    		</li>
+	    		<li>
+	    			<span>寄件人地址邮编</span>
+	    			
+	    			<input class="easyui-textbox"  id="send_addr_code" name="send_addr_code"/>
+	    		</li>
+	    		<li>
+	    			<span>寄件人电话</span>
+	    			
+	    			<input class="easyui-textbox"  id="send_tel" name="send_tel"/>
+	    		</li>
+	    		<li>
+	    			<span>收件人</span>
+	    			
+	    			<input class="easyui-textbox"  id="receive_name" name="receive_name"/>
+	    		</li>
+	    		<li>
+	    			<span>收件人地址</span>
+	    			
+	    			<input class="easyui-textbox"  id="receive_addr" name="receive_addr"/>
+	    		</li>
+	    		<li>
+	    			<span>收件人地址邮编</span>
+	    			
+	    			<input class="easyui-textbox"  id="receive_addr_code" name="receive_addr_code"/>
+	    		</li>
+	    		<li>
+	    			<span>收件人电话</span>
+	    			
+	    			<input class="easyui-textbox"  id="receive_tel" name="receive_tel"/>
+	    		</li>
+	    		<li>
+	    			<span>删除状态</span>
+	    			
+	    			<input class="easyui-combobox"  id="isdel" name="isdel"/>
+	    		</li>
+	    		<li>
+	    			<span>备注</span>
+	    			
+	    			<input class="easyui-textbox"  id="remark" name="remark"/>
+	    		</li>
+	    	</ul>
+	    </form>
+	    <div style="text-align:center;padding:5px">
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">关闭</a>
+	    </div>
+	    </div>
+	</div>
+		
+
+	</body>
+
+</html>

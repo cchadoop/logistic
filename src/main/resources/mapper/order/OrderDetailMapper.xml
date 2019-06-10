@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.order.mapper.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.order.entity.OrderDetail">
+    <id column="orderdetail_id" jdbcType="VARCHAR" property="orderdetailId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="volume" jdbcType="DECIMAL" property="volume" />
+    <result column="weight" jdbcType="DECIMAL" property="weight" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deliveryspot_id" jdbcType="VARCHAR" property="deliveryspotId" />
+    <result column="suppiler_id" jdbcType="VARCHAR" property="suppilerId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    orderdetail_id, order_id, goods_name, `number`, volume, weight, total_price, create_time, 
+    update_time, deliveryspot_id, suppiler_id
+  </sql>
+  <select id="selectByExample" parameterType="com.jxlg.logistic.order.entity.OrderDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from o_orderdetail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from o_orderdetail
+    where orderdetail_id = #{orderdetailId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from o_orderdetail
+    where orderdetail_id = #{orderdetailId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.order.entity.OrderDetailExample">
+    delete from o_orderdetail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jxlg.logistic.order.entity.OrderDetail">
+    insert into o_orderdetail (orderdetail_id, order_id, goods_name, 
+      `number`, volume, weight, 
+      total_price, create_time, update_time, 
+      deliveryspot_id, suppiler_id)
+    values (#{orderdetailId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR}, 
+      #{number,jdbcType=INTEGER}, #{volume,jdbcType=DECIMAL}, #{weight,jdbcType=DECIMAL}, 
+      #{totalPrice,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deliveryspotId,jdbcType=VARCHAR}, #{suppilerId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.order.entity.OrderDetail">
+    insert into o_orderdetail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderdetailId != null">
+        orderdetail_id,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="volume != null">
+        volume,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="totalPrice != null">
+        total_price,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deliveryspotId != null">
+        deliveryspot_id,
+      </if>
+      <if test="suppilerId != null">
+        suppiler_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderdetailId != null">
+        #{orderdetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="volume != null">
+        #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryspotId != null">
+        #{deliveryspotId,jdbcType=VARCHAR},
+      </if>
+      <if test="suppilerId != null">
+        #{suppilerId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jxlg.logistic.order.entity.OrderDetailExample" resultType="java.lang.Long">
+    select count(*) from o_orderdetail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update o_orderdetail
+    <set>
+      <if test="record.orderdetailId != null">
+        orderdetail_id = #{record.orderdetailId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.number != null">
+        `number` = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.volume != null">
+        volume = #{record.volume,jdbcType=DECIMAL},
+      </if>
+      <if test="record.weight != null">
+        weight = #{record.weight,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalPrice != null">
+        total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deliveryspotId != null">
+        deliveryspot_id = #{record.deliveryspotId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suppilerId != null">
+        suppiler_id = #{record.suppilerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update o_orderdetail
+    set orderdetail_id = #{record.orderdetailId,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      `number` = #{record.number,jdbcType=INTEGER},
+      volume = #{record.volume,jdbcType=DECIMAL},
+      weight = #{record.weight,jdbcType=DECIMAL},
+      total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      deliveryspot_id = #{record.deliveryspotId,jdbcType=VARCHAR},
+      suppiler_id = #{record.suppilerId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.order.entity.OrderDetail">
+    update o_orderdetail
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null">
+        `number` = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="volume != null">
+        volume = #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null">
+        total_price = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryspotId != null">
+        deliveryspot_id = #{deliveryspotId,jdbcType=VARCHAR},
+      </if>
+      <if test="suppilerId != null">
+        suppiler_id = #{suppilerId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderdetail_id = #{orderdetailId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.order.entity.OrderDetail">
+    update o_orderdetail
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      `number` = #{number,jdbcType=INTEGER},
+      volume = #{volume,jdbcType=DECIMAL},
+      weight = #{weight,jdbcType=DECIMAL},
+      total_price = #{totalPrice,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deliveryspot_id = #{deliveryspotId,jdbcType=VARCHAR},
+      suppiler_id = #{suppilerId,jdbcType=VARCHAR}
+    where orderdetail_id = #{orderdetailId,jdbcType=VARCHAR}
+  </update>
+</mapper>

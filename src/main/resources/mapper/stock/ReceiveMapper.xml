@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.stock.mapper.ReceiveMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.stock.entity.Receive">
+    <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
+    <result column="receive_no" jdbcType="VARCHAR" property="receiveNo" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="receive_person" jdbcType="VARCHAR" property="receivePerson" />
+    <result column="receive_time" jdbcType="TIMESTAMP" property="receiveTime" />
+    <result column="receive_status" jdbcType="VARCHAR" property="receiveStatus" />
+    <result column="receive_way" jdbcType="VARCHAR" property="receiveWay" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+    <result column="confirm_addr" jdbcType="VARCHAR" property="confirmAddr" />
+    <result column="confirm_person" jdbcType="VARCHAR" property="confirmPerson" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    receive_id, receive_no, order_id, receive_person, receive_time, receive_status, receive_way, 
+    confirm_time, confirm_addr, confirm_person
+  </sql>
+  <select id="selectByExample" parameterType="com.jxlg.logistic.stock.entity.ReceiveExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from s_receive
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from s_receive
+    where receive_id = #{receiveId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from s_receive
+    where receive_id = #{receiveId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.stock.entity.ReceiveExample">
+    delete from s_receive
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jxlg.logistic.stock.entity.Receive">
+    insert into s_receive (receive_id, receive_no, order_id, 
+      receive_person, receive_time, receive_status, 
+      receive_way, confirm_time, confirm_addr, 
+      confirm_person)
+    values (#{receiveId,jdbcType=VARCHAR}, #{receiveNo,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{receivePerson,jdbcType=VARCHAR}, #{receiveTime,jdbcType=TIMESTAMP}, #{receiveStatus,jdbcType=VARCHAR}, 
+      #{receiveWay,jdbcType=VARCHAR}, #{confirmTime,jdbcType=TIMESTAMP}, #{confirmAddr,jdbcType=VARCHAR}, 
+      #{confirmPerson,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.stock.entity.Receive">
+    insert into s_receive
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="receiveId != null">
+        receive_id,
+      </if>
+      <if test="receiveNo != null">
+        receive_no,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="receivePerson != null">
+        receive_person,
+      </if>
+      <if test="receiveTime != null">
+        receive_time,
+      </if>
+      <if test="receiveStatus != null">
+        receive_status,
+      </if>
+      <if test="receiveWay != null">
+        receive_way,
+      </if>
+      <if test="confirmTime != null">
+        confirm_time,
+      </if>
+      <if test="confirmAddr != null">
+        confirm_addr,
+      </if>
+      <if test="confirmPerson != null">
+        confirm_person,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="receiveId != null">
+        #{receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveNo != null">
+        #{receiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePerson != null">
+        #{receivePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTime != null">
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveStatus != null">
+        #{receiveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveWay != null">
+        #{receiveWay,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null">
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmAddr != null">
+        #{confirmAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmPerson != null">
+        #{confirmPerson,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jxlg.logistic.stock.entity.ReceiveExample" resultType="java.lang.Long">
+    select count(*) from s_receive
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update s_receive
+    <set>
+      <if test="record.receiveId != null">
+        receive_id = #{record.receiveId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveNo != null">
+        receive_no = #{record.receiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null">
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receivePerson != null">
+        receive_person = #{record.receivePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveTime != null">
+        receive_time = #{record.receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.receiveStatus != null">
+        receive_status = #{record.receiveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiveWay != null">
+        receive_way = #{record.receiveWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmTime != null">
+        confirm_time = #{record.confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.confirmAddr != null">
+        confirm_addr = #{record.confirmAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmPerson != null">
+        confirm_person = #{record.confirmPerson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update s_receive
+    set receive_id = #{record.receiveId,jdbcType=VARCHAR},
+      receive_no = #{record.receiveNo,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      receive_person = #{record.receivePerson,jdbcType=VARCHAR},
+      receive_time = #{record.receiveTime,jdbcType=TIMESTAMP},
+      receive_status = #{record.receiveStatus,jdbcType=VARCHAR},
+      receive_way = #{record.receiveWay,jdbcType=VARCHAR},
+      confirm_time = #{record.confirmTime,jdbcType=TIMESTAMP},
+      confirm_addr = #{record.confirmAddr,jdbcType=VARCHAR},
+      confirm_person = #{record.confirmPerson,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.stock.entity.Receive">
+    update s_receive
+    <set>
+      <if test="receiveNo != null">
+        receive_no = #{receiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="receivePerson != null">
+        receive_person = #{receivePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTime != null">
+        receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveStatus != null">
+        receive_status = #{receiveStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveWay != null">
+        receive_way = #{receiveWay,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmTime != null">
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmAddr != null">
+        confirm_addr = #{confirmAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmPerson != null">
+        confirm_person = #{confirmPerson,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where receive_id = #{receiveId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.stock.entity.Receive">
+    update s_receive
+    set receive_no = #{receiveNo,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      receive_person = #{receivePerson,jdbcType=VARCHAR},
+      receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      receive_status = #{receiveStatus,jdbcType=VARCHAR},
+      receive_way = #{receiveWay,jdbcType=VARCHAR},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      confirm_addr = #{confirmAddr,jdbcType=VARCHAR},
+      confirm_person = #{confirmPerson,jdbcType=VARCHAR}
+    where receive_id = #{receiveId,jdbcType=VARCHAR}
+  </update>
+</mapper>

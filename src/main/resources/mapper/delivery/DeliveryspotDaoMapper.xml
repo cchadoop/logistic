@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.delivery.mapper.DeliveryspotDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.delivery.queryview.DeliveryspotQueryView">
+    <id column="deliveryspot_id" jdbcType="VARCHAR" property="deliveryspotId" />
+    <result column="deliveryspot_no" jdbcType="VARCHAR" property="deliveryspotNo" />
+    <result column="deliveryspot_name" jdbcType="VARCHAR" property="deliveryspotName" />
+    <result column="city_id" jdbcType="VARCHAR" property="cityId" />
+    <result column="deliveryspot_addr" jdbcType="VARCHAR" property="deliveryspotAddr" />
+    <result column="emp_id" jdbcType="VARCHAR" property="empId" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="first_weight_scope" jdbcType="DECIMAL" property="firstWeightScope" />
+    <result column="first_weight_price" jdbcType="DECIMAL" property="firstWeightPrice" />
+    <result column="second_weight_rate" jdbcType="DECIMAL" property="secondWeightRate" />
+    <result column="first_volume_scope" jdbcType="DECIMAL" property="firstVolumeScope" />
+    <result column="first_volume_price" jdbcType="DECIMAL" property="firstVolumePrice" />
+    <result column="second_volume_rate" jdbcType="DECIMAL" property="secondVolumeRate" />
+    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+    <result column="delivery_status" jdbcType="VARCHAR" property="deliveryStatus" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="deliveryStatusOptionLabel" jdbcType="VARCHAR" property="deliveryStatusOptionLabel" />
+  </resultMap>
+  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.delivery.condition.DeliveryspotCondition">
+  	SELECT
+	d.*,
+	c.city_name,
+	e.emp_name,
+	dd.OPTION_LABEL AS deliveryStatusOptionLabel 
+	FROM
+	d_deliveryspot d
+	LEFT JOIN t_city c ON d.city_id = c.city_id
+	LEFT JOIN sys_emp e ON d.emp_id = e.emp_id
+	LEFT JOIN data_dictionary_detail dd ON d.delivery_status = dd.DICTIONARY_DETAIL_LABEL
+	<where>
+		<if test="minDate !=null">
+			AND d.delivery_time &gt;= #{minDate}
+		</if>
+		<if test="maxDate !=null">
+			AND d.delivery_time &lt;= #{maxDate}
+		</if>
+		<if test="cityId !=null">
+			AND d.city_id = #{cityId}
+		</if>
+		<if test="deliveryStatus !=null">
+			AND d.delivery_status = #{deliveryStatus}
+		</if>
+	</where>
+  </select>
+  
+  <select id="selectByProvinceName" resultMap="BaseResultMap">
+  	select ds.*,c.city_name,p.province_name from d_deliveryspot ds
+	left join t_city c on
+	ds.city_id = c.city_id
+	left join t_province p on
+	c.province_id = p.province_id
+	where p.province_name = #{provinceName}
+  </select>
+  
+  <select id="selectByAddr" resultMap="BaseResultMap">
+  	select ds.*,c.city_name from d_deliveryspot ds
+	left join t_city c on
+	ds.city_id = c.city_id
+	where ds.deliveryspot_addr =#{deliveryspotAddr}
+  </select>
+</mapper>

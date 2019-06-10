@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.sys.mapper.EmployeeDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.sys.queryview.EmployeeQueryView">
+    <id column="emp_id" jdbcType="VARCHAR" property="empId" />
+    <result column="emp_code" jdbcType="VARCHAR" property="empCode" />
+    <result column="emp_account" jdbcType="VARCHAR" property="empAccount" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="emp_password" jdbcType="VARCHAR" property="empPassword" />
+    <result column="emp_sex" jdbcType="VARCHAR" property="empSex" />
+    <result column="emp_birthday" jdbcType="DATE" property="empBirthday" />
+    <result column="emp_live_address" jdbcType="VARCHAR" property="empLiveAddress" />
+    <result column="emp_work_address" jdbcType="VARCHAR" property="empWorkAddress" />
+    <result column="emp_phone" jdbcType="VARCHAR" property="empPhone" />
+    <result column="emp_worktime" jdbcType="DATE" property="empWorktime" />
+    <result column="emp_salary" jdbcType="DECIMAL" property="empSalary" />
+    <result column="emp_email" jdbcType="VARCHAR" property="empEmail" />
+    <result column="emp_idcard" jdbcType="VARCHAR" property="empIdcard" />
+    <result column="emp_bankcode" jdbcType="VARCHAR" property="empBankcode" />
+    <result column="emp_work_status" jdbcType="VARCHAR" property="empWorkStatus" />
+    <result column="emp_marry_status" jdbcType="VARCHAR" property="empMarryStatus" />
+    <result column="workOptionLabel" jdbcType="VARCHAR" property="workOptionLabel" />
+    <result column="marryOptionLabel" jdbcType="VARCHAR" property="marryOptionLabel" />
+  </resultMap>
+ 	
+ <select id="listView" parameterType="com.jxlg.logistic.sys.condition.EmployeeCondition" resultMap="BaseResultMap">
+ 	select s.emp_id,s.emp_code,s.emp_account,s.emp_name,
+	s.emp_password,s.emp_sex,s.emp_birthday,
+	s.emp_live_address,s.emp_work_address,
+	s.emp_phone,s.emp_worktime,s.emp_salary,s.emp_email,s.emp_idcard,s.emp_bankcode,s.emp_work_status,s.emp_marry_status,
+	d1.OPTION_LABEL as workOptionLabel,d2.OPTION_LABEL as marryOptionLabel from sys_emp s
+	left join data_dictionary_detail d1 on
+	s.emp_work_status=d1.DICTIONARY_DETAIL_LABEL
+	left join data_dictionary_detail d2 on
+	s.emp_marry_status= d2.DICTIONARY_DETAIL_LABEL
+ 	<where>
+ 		<if test="empName !=null">
+ 			AND s.emp_name like '%${empName}%'
+ 		</if>
+ 		<if test="minDate != null">
+			AND s.emp_worktime >=#{minDate}
+		</if>
+		<if test="maxDate != null">
+			AND s.emp_worktime &lt;=#{maxDate}
+		</if>
+		<if test="empWorkStatus !=null">
+			AND s.emp_work_status = #{empWorkStatus}
+		</if>
+ 	</where>
+ </select>
+ 
+ <select id="checkLogin" resultMap="BaseResultMap">
+ 	select * from sys_emp
+ 	where sys_emp.emp_account = #{account} and sys_emp.emp_password = #{password}
+ </select>
+  <select id="checkRegisterForEmp" resultMap="BaseResultMap">
+ 	select * from sys_emp
+ 	where sys_emp.emp_account = #{account}
+ </select>
+ <select id="modifyUserAndPass" resultMap="BaseResultMap">
+ 	UPDATE sys_emp 
+	SET sys_emp.emp_password = #{password} 
+	WHERE
+	sys_emp.emp_account = #{account}
+ </select>
+ </mapper>

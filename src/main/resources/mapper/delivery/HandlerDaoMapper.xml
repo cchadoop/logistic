@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.delivery.mapper.HandlerDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.delivery.queryview.HandlerQueryView">
+    <id column="handler_id" jdbcType="VARCHAR" property="handlerId" />
+    <result column="handler_no" jdbcType="VARCHAR" property="handlerNo" />
+    <result column="emp_id" jdbcType="VARCHAR" property="empId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="deliveryspot_id" jdbcType="VARCHAR" property="deliveryspotId" />
+    <result column="car_id" jdbcType="VARCHAR" property="carId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="handler_status" jdbcType="VARCHAR" property="handlerStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="deliveryspot_no" jdbcType="VARCHAR" property="deliveryspotNo" />
+    <result column="car_no" jdbcType="VARCHAR" property="carNo" />
+    <result column="handlerStatusOptionLabel" jdbcType="VARCHAR" property="handlerStatusOptionLabel" />
+  </resultMap>
+  
+  <select id="listView" resultMap="BaseResultMap">
+  	SELECT
+	h.*,
+	o.order_no,
+	e.emp_name,
+	c.car_no,
+	d.deliveryspot_no,
+	dd.OPTION_LABEL AS handlerStatusOptionLabel 
+	FROM
+	d_handler h
+	LEFT JOIN sys_emp e ON h.emp_id = e.emp_id
+	LEFT JOIN o_order o ON h.order_id = o.order_id
+	LEFT JOIN t_car c ON h.car_id = c.car_id
+	LEFT JOIN d_deliveryspot d ON h.deliveryspot_id = d.deliveryspot_id
+	LEFT JOIN data_dictionary_detail dd ON h.handler_status = dd.DICTIONARY_DETAIL_LABEL
+  	<where>
+  		<if test="orderId !=null">
+  			AND h.order_id = #{orderId}
+  		</if>
+  		<if test="handlerStatus !=null">
+  			AND h.handler_status = #{handlerStatus}
+  		</if>
+  	</where>
+  </select>
+ </mapper>

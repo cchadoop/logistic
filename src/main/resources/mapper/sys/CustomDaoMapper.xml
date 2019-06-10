@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.sys.mapper.CustomDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.sys.queryview.CustomQueryView">
+    <id column="cst_id" jdbcType="VARCHAR" property="cstId" />
+    <result column="cst_code" jdbcType="VARCHAR" property="cstCode" />
+    <result column="cst_name" jdbcType="VARCHAR" property="cstName" />
+    <result column="cst_password" jdbcType="VARCHAR" property="cstPassword" />
+    <result column="cst_birthday" jdbcType="DATE" property="cstBirthday" />
+    <result column="cst_sex" jdbcType="VARCHAR" property="cstSex" />
+    <result column="cst_email" jdbcType="VARCHAR" property="cstEmail" />
+    <result column="cst_phone" jdbcType="VARCHAR" property="cstPhone" />
+    <result column="cst_address" jdbcType="VARCHAR" property="cstAddress" />
+    <result column="cst_idcard" jdbcType="VARCHAR" property="cstIdcard" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="cst_status" jdbcType="VARCHAR" property="cstStatus" />
+    <result column="cstStatusOptionLabel" jdbcType="VARCHAR" property="cstStatusOptionLabel" />
+  </resultMap>
+  
+  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.sys.entity.Custom">
+  	select s.*,d.OPTION_LABEL as cstStatusOptionLabel from sys_cst s
+	left join data_dictionary_detail d on
+	s.cst_status = d.DICTIONARY_DETAIL_LABEL
+	<where>
+		<if test="cstName !=null">
+			AND s.cst_name like '%${cstName}%'
+		</if>
+		<if test="cstPhone !=null">
+			AND s.cst_phone like '%${cstPhone}%'
+		</if>
+	</where>
+  </select>
+  
+  <select id="checkCustom" resultMap="BaseResultMap">
+  	select * from sys_cst
+  	where sys_cst.cst_code = #{code}
+  </select>
+   <select id="selectByAccountAndPwd" resultMap="BaseResultMap">
+  	select * from sys_cst
+  	where sys_cst.cst_code = #{code} and sys_cst.cst_password=#{password}
+  </select>
+ </mapper>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="../../css/themes/default/easyui.css">
+
+		<script type="text/javascript" src="../../js/framework/jquery.min.js"></script>
+		<script type="text/javascript" src="../../js/framework/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../js/framework/easyui-lang-zh_CN.js"></script>
+
+		<style type="text/css">
+			.menu.main {
+				width: 100%;
+				margin-left: -8px;
+				border-style: none;
+				/*  padding: 0px; */
+			}
+			
+			.menu.main li {
+				padding-left: 16px;
+				list-style: none;
+				width: 100%;
+				height: 40px;
+				line-height: 40px;
+				border-bottom: 1px solid #e1e1e8;
+			}
+		</style>
+
+		<script>
+			//		 $(window).resize(function () {  
+			//       $('#tabs').tabs({  
+			//           width: $("#tabs").parent().width(),  
+			//           height: "auto"  
+			//       });  
+			//   })  
+
+			var index = 0;
+
+			function addTab(obj) {
+				index++;
+				$('#tabs').tabs('add', {
+					title: obj.attr('tab-title'),
+					//content:'<div style="height:1000px">a</div>',
+					content: '<iframe name="indextab" scrolling="auto" src="' + obj.attr('href') + '" frameborder="0" style="width:100%;height:99%;"></iframe>',
+					closable: true
+				});
+			}
+
+			function removePanel() {
+				var tab = $('#tabs').tabs('getSelected');
+				if(tab) {
+					var index = $('#tabs').tabs('getTabIndex', tab);
+					$('#tabs').tabs('close', index);
+				}
+			}
+
+			$(function() {
+				$('.menu li').click(function() {
+					addTab($(this));
+				});
+			});
+		</script>
+	</head>
+
+	<body class="easyui-layout">
+		<div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">north region</div>
+		<div data-options="region:'west',split:true,title:'West'" style="width:150px;">
+			<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div title="系统管理" data-options="selected:true" style="padding:0px;">
+					<ul class="menu main">
+						<li tab-title='客户管理' href='sys/cst_list.html'>客户管理</li>
+						<li tab-title='员工管理' href='sys/emp_list.html'>员工管理</li>
+						<li tab-title='角色管理' href='sys/role_list.html'>角色管理</li>
+						<li tab-title='权限管理' href='sys/power_list.html'>权限管理</li>
+						<li tab-title='模块管理' href='sys/module_list.html'>模块管理</li>
+						<li tab-title='员工角色管理' href='sys/emp_role_list.html'>员工角色管理</li>
+						<li tab-title='角色菜单管理' href='sys/role_power_list.html'>角色菜单管理</li>
+					</ul>
+				</div>
+				<div title="订单管理" style="padding:0px;">
+					<ul class="menu main">
+						<li tab-title='订单管理' href='order/order_list.html'>订单管理</li>
+						<li tab-title='订单详情管理' href='order/orderdetail_list.html'>订单详情管理</li>
+						<li tab-title='供应商管理' href='order/suppiler_list.html'>供应商管理</li>
+					</ul>
+				</div>
+				<div title="运输管理" style="padding:10px">
+					<ul class="menu main">
+						<li tab-title='车辆管理' href='transport/car_list.html'>车辆管理</li>
+						<li tab-title='车辆类型管理' href='transport/cartype_list.html'>车辆类型管理</li>
+						<li tab-title='司机管理' href='transport/driver_list.html'>司机管理</li>
+						<li tab-title='路线管理' href='transport/line_list.html'>路线管理</li>
+						<li tab-title='路线详情管理' href='transport/linedetail_list.html'>路线详情管理</li>
+						<li tab-title='城市管理' href='transport/city_list.html'>城市管理</li>
+						<li tab-title='省份管理' href='transport/province_list.html'>省份管理</li>
+					</ul>  
+				</div>
+				<div title="配送管理" style="padding:10px">
+					<ul class="menu main">
+						<li tab-title='配送点管理' href='delivery/delivery_list.html'>配送点管理</li>
+						<li tab-title='交接单管理' href='delivery/handler_list.html'>交接单管理</li>
+					</ul>
+				</div>
+				<div title="仓库管理" style="padding:10px">
+					<ul class="menu main">
+						<li tab-title='仓库管理' href='stock/stock_list.html'>仓库管理</li>
+						<li tab-title='收货作业管理' href='stock/receive_list.html'>收货作业管理</li>
+					</ul>
+				</div>
+				<div title="数据字典" style="padding:10px">
+					<ul class="menu main">
+						<li tab-title='数据字典管理' href='data/data_dictionary_list.html'>数据字典管理</li>
+						<li tab-title='数据字典明细管理' href='data/data_dictionary_detail_list.html'>数据字典明细管理</li>
+					</ul>  
+				</div>
+			</div>
+
+		</div>
+		<!-- <div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width:100px;padding:10px;">east region</div> -->
+		<!-- <div data-options="region:'south',border:false" style="height:50px;background:#A9FACD;padding:10px;">south region</div> -->
+		<div data-options="region:'center'">
+
+			<div id="tabs" class="easyui-tabs" fit="true" border="false">
+				<div title="欢迎使用" style="padding: 20px; overflow: hidden;" id="home">
+					<h1>Welcome to jQuery UI!</h1>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../../css/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/themes/icon.css">
+			<link rel="stylesheet" type="text/css" href="../../../css/common.css">
+
+		<script type="text/javascript" src="../../../js/framework/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../js/framework/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../js/framework/easyui-lang-zh_CN.js"></script>
+
+		<title></title>
+		
+		<style>
+			
+			.
+			
+		</style>
+
+	</head>
+
+	<body style="margin: 0;">
+
+	
+	<div class="easyui-panel" data-options="fit:true,border:false"; title="客户新增|客户修改" style="width:100%;">
+		<div style="padding:10px 60px 20px 10px">
+	    <form  method="post">
+	    	<ul class="form_layout">
+
+	    		<li style="display: none;">
+	    			<span>ID</span>
+	    			
+	    			<input class="easyui-textbox"  id="cst_id" name="cst_id"/>
+	    		</li>
+	    		<li>
+	    			<span>编号</span>
+	    			
+	    			<input class="easyui-textbox"  id="cst_code" name="cst_code"/>
+	    		</li>
+	    		
+	    		<li>
+	    			<span>姓名</span>
+	    			
+	    			<input class="easyui-textbox"  id="cst_name" name="cst_name"/>
+	    		</li>
+	    		
+	    		<li>
+	    			<span>密码</span>
+	    			
+	    			<input class="easyui-passwordbox"  id="cst_password" name="cst_password"/>
+	    		</li>
+
+	    		<li>
+	    			<span>生日</span>
+	    			
+	    			<input class="easyui-datebox"  id="cst_birthday" name="cst_birthday"/>
+	    		</li>
+
+	    		<li>
+	    			<span>性别</span>
+	    			
+	    			<input class="easyui-combobox"  id="cst_sex" name="cst_sex"/>
+	    		</li>
+	    		<li>
+	    			<span>邮箱</span>
+	    			
+	    			<input class="easyui-textbox validatebox" id="cst_email" name="cst_email" data-options="prompt:'Enter a valid email.',required:false,validType:'email'"  />
+	    		</li>
+	    		<li>
+	    			<span>联系方式</span>
+	    			
+	    			<input class="easyui-numberbox" id="cst_phone" name="cst_phone"/>
+	    		</li>
+	    		<li>
+	    			<span>地址</span>
+	    			
+	    			<input class="easyui-textbox" id="cst_address" name="cst_address" />
+	    		</li>
+	    		<li>
+	    			<span>身份证号</span>
+	    			
+	    			<input class="easyui-textbox" id="cst_idcard" name="cst_idcard" />
+	    		</li>
+	    		<li>
+	    			<span>创建时间</span>
+	    			
+	    			<input class="easyui-datebox" id="create_time" name="create_time" />
+	    		</li>
+
+	    		<li>
+	    			<span>激活状态</span>
+	    			
+	    			<input class="easyui-combobox"  id="cst_status" name="cst_status"/>
+	    		</li>
+	    	</ul>
+	    </form>
+	    <div style="text-align:center;padding:5px">
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">关闭</a>
+	    </div>
+	    </div>
+	</div>
+		
+
+	</body>
+
+</html>

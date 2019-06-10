@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.stock.mapper.StockDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.stock.queryview.StockQueryView">
+    <id column="stock_id" jdbcType="VARCHAR" property="stockId" />
+    <result column="stock_no" jdbcType="VARCHAR" property="stockNo" />
+    <result column="stock_name" jdbcType="VARCHAR" property="stockName" />
+    <result column="stock_addr" jdbcType="VARCHAR" property="stockAddr" />
+    <result column="cst_id" jdbcType="VARCHAR" property="cstId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="receive_id" jdbcType="VARCHAR" property="receiveId" />
+    <result column="instock_time" jdbcType="TIMESTAMP" property="instockTime" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="pkgs" jdbcType="INTEGER" property="pkgs" />
+    <result column="weight" jdbcType="DECIMAL" property="weight" />
+    <result column="CBM" jdbcType="DECIMAL" property="cbm" />
+    <result column="L" jdbcType="DECIMAL" property="l" />
+    <result column="W" jdbcType="DECIMAL" property="w" />
+    <result column="H" jdbcType="DECIMAL" property="h" />
+    <result column="cst_name" jdbcType="VARCHAR" property="cstName" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="receive_no" jdbcType="VARCHAR" property="receiveNo" />
+  </resultMap>
+  
+  <select id="listView" resultMap="BaseResultMap">
+  	SELECT
+	s.*,
+	c.cst_name,
+	o.order_no,
+	r.receive_no 
+FROM
+	s_stock s
+	LEFT JOIN sys_cst c ON s.cst_id = c.cst_id
+	LEFT JOIN o_order o ON s.order_id = o.order_id
+	LEFT JOIN s_receive r ON s.receive_id = r.receive_id
+	<where>
+		<if test="cstId !=null">
+			AND s.cst_id = #{cstId}
+		</if>
+		<if test="orderId !=null">
+			AND s.order_id = #{orderId}
+		</if>
+		<if test="receiveId !=null">
+			AND s.receive_id = #{receiveId}
+		</if>
+	</where>
+  </select>
+  
+  </mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.order.mapper.OrderDetailDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.order.queryview.OrderDetailQueryView">
+    <id column="orderdetail_id" jdbcType="VARCHAR" property="orderdetailId" />
+    <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="volume" jdbcType="DECIMAL" property="volume" />
+    <result column="weight" jdbcType="DECIMAL" property="weight" />
+    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deliveryspot_id" jdbcType="VARCHAR" property="deliveryspotId" />
+    <result column="suppiler_id" jdbcType="VARCHAR" property="suppilerId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="deliveryspot_no" jdbcType="VARCHAR" property="deliveryspotNo" />
+    <result column="suppiler_no" jdbcType="VARCHAR" property="suppilerNo" />
+  </resultMap>
+  
+  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.order.condition.OrderDetailCondition">
+  	SELECT
+	od.*,
+	o.order_no,
+	d.deliveryspot_no,
+	s.suppiler_no 
+	FROM
+	o_orderdetail od
+	LEFT JOIN o_order o ON od.order_id = o.order_id
+	LEFT JOIN d_deliveryspot d ON od.deliveryspot_id = d.deliveryspot_id
+	LEFT JOIN o_suppiler s ON od.suppiler_id = s.suppiler_id
+	<where>
+		<if test="minPrice !=null">
+			AND od.total_price &gt;= #{minPrice}
+		</if>
+		<if test="maxPrice !=null">
+			AND od.total_price &lt;= #{maxPrice}
+		</if>
+		<if test="goodsName !=null">
+			AND od.goods_name like '%${goodsName}%'
+		</if>
+	</where>
+  </select>
+  
+  <select id="selectByOrderNo" resultMap="BaseResultMap">
+	SELECT
+		od.* 
+	FROM
+		o_orderdetail od
+		LEFT JOIN o_order o ON od.order_id = o.order_id 
+	WHERE
+		o.order_no = #{orderNo}
+  </select>
+ </mapper>

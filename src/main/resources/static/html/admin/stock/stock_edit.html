@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../../../css/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="../../../css/themes/icon.css">
+			<link rel="stylesheet" type="text/css" href="../../../css/common.css">
+
+		<script type="text/javascript" src="../../../js/framework/jquery.min.js"></script>
+		<script type="text/javascript" src="../../../js/framework/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="../../../js/framework/easyui-lang-zh_CN.js"></script>
+
+		<title></title>
+		
+		<style>
+			
+			.
+			
+		</style>
+
+	</head>
+
+	<body style="margin: 0;">
+
+	
+	<div class="easyui-panel" data-options="fit:true,border:false"; title="仓库新增|仓库修改" style="width:100%;">
+		<div style="padding:10px 60px 20px 10px">
+	    <form  method="post">
+	    	<ul class="form_layout">
+
+	    		<li style="display: none;">
+	    			<span>ID</span>
+	    			
+	    			<input class="easyui-textbox"  id="stock_id" name="stock_id"/>
+	    		</li>
+	    		<li>
+	    			<span>编号</span>
+	    			
+	    			<input class="easyui-textbox"  id="stock_no" name="stock_no"/>
+	    		</li>
+	    		<li>
+	    			<span>名称</span>
+	    			
+	    			<input class="easyui-textbox"  id="stock_name" name="stock_name"/>
+	    		</li>
+	    		<li>
+	    			<span>地址</span>
+	    			
+	    			<input class="easyui-textbox"  id="stock_addr" name="stock_addr"/>
+	    		</li>
+	    		<li>
+	    			<span>客户编号</span>
+	    			
+	    			<input class="easyui-combobox"  id="cst_id" name="cst_id"/>
+	    		</li>
+	    		<li>
+	    			<span>订单编号</span>
+	    			
+	    			<input class="easyui-combobox"  id="order_id" name="order_id"/>
+	    		</li>
+	    		<li>
+	    			<span>收货单号</span>
+	    			
+	    			<input class="easyui-combobox"  id="receive_id" name="receive_id"/>
+	    		</li>
+	    		<li>
+	    			<span>入库时间</span>
+	    			
+	    			<input class="easyui-datetimebox"  id="instock_time" name="instock_time"/>
+	    		</li>
+	    		<li>
+	    			<span>库位</span>
+	    			
+	    			<input class="easyui-textbox"  id="position" name="position"/>
+	    		</li>
+	    		<li>
+	    			<span>件数</span>
+	    			
+	    			<input class="easyui-numberbox" data-options="precision:0"  id="pkgs" name="pkgs"/>
+	    		</li>
+	    		<li>
+	    			<span>重量(kg)</span>
+	    			
+	    			<input class="easyui-numberbox" data-options="precision:2"  id="weight" name="weight"/>
+	    		</li>
+	    		<li>
+	    			<span>卡板体积(m³)</span>
+	    			
+	    			<input class="easyui-numberbox" data-options="precision:0" id="CBM" name="CBM"/>
+	    		</li>
+	    		<li>
+	    			<span>卡板长(cm)</span>
+	    			
+	    			<input class="easyui-numberbox" data-options="precision:0" id="L" name="L"/>
+	    		</li>
+	    		<li>
+	    			<span>卡板宽(cm)</span>
+	    			
+	    			<input class="easyui-numberbox" data-options="precision:0" id="W" name="W"/>
+	    		</li>
+	    		<li>
+	    			<span>卡板高(cm)</span>
+	    			
+	    			<input class="easyui-numberbox" data-options="precision:0" id="H" name="H"/>
+	    		</li>
+	    	</ul>
+	    </form>
+	    <div style="text-align:center;padding:5px">
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">保存</a>
+	    	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">关闭</a>
+	    </div>
+	    </div>
+	</div>
+		
+
+	</body>
+
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.order.mapper.OrderDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.order.queryview.OrderQueryView">
+    <id column="order_id" jdbcType="VARCHAR" property="orderId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="send_name" jdbcType="VARCHAR" property="sendName" />
+    <result column="send_addr" jdbcType="VARCHAR" property="sendAddr" />
+    <result column="send_addr_code" jdbcType="VARCHAR" property="sendAddrCode" />
+    <result column="send_tel" jdbcType="VARCHAR" property="sendTel" />
+    <result column="receive_name" jdbcType="VARCHAR" property="receiveName" />
+    <result column="receive_addr" jdbcType="VARCHAR" property="receiveAddr" />
+    <result column="receive_addr_code" jdbcType="VARCHAR" property="receiveAddrCode" />
+    <result column="receive_tel" jdbcType="VARCHAR" property="receiveTel" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="orderStatusOptionLabel" jdbcType="VARCHAR" property="orderStatusOptionLabel" />
+  </resultMap>
+  
+  <select id="listView" resultMap="BaseResultMap">
+	select s.*,d.OPTION_LABEL as orderStatusOptionLabel from o_order s
+	left join data_dictionary_detail d on
+	s.order_status = d.DICTIONARY_DETAIL_LABEL
+  	<where>
+  		<if test="sendName !=null">
+  			AND s.send_name like '%${sendName}%'
+  		</if>
+  		<if test="receiveAddr !=null">
+  			AND s.receive_addr like '%${receiveAddr}%'
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="selectByOrderNo" resultMap="BaseResultMap">
+SELECT
+	o.*,
+	d.OPTION_LABEL AS orderStatusOptionLabel 
+FROM
+	o_order o
+	LEFT JOIN data_dictionary_detail d ON o.order_status = d.DICTIONARY_DETAIL_LABEL 
+WHERE
+	o.order_no = #{orderNo}
+  </select>
+</mapper>

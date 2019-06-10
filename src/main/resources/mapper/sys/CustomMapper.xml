@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxlg.logistic.sys.mapper.CustomMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.sys.entity.Custom">
+    <id column="cst_id" jdbcType="VARCHAR" property="cstId" />
+    <result column="cst_code" jdbcType="VARCHAR" property="cstCode" />
+    <result column="cst_name" jdbcType="VARCHAR" property="cstName" />
+    <result column="cst_password" jdbcType="VARCHAR" property="cstPassword" />
+    <result column="cst_birthday" jdbcType="DATE" property="cstBirthday" />
+    <result column="cst_sex" jdbcType="VARCHAR" property="cstSex" />
+    <result column="cst_email" jdbcType="VARCHAR" property="cstEmail" />
+    <result column="cst_phone" jdbcType="VARCHAR" property="cstPhone" />
+    <result column="cst_address" jdbcType="VARCHAR" property="cstAddress" />
+    <result column="cst_idcard" jdbcType="VARCHAR" property="cstIdcard" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="cst_status" jdbcType="VARCHAR" property="cstStatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    cst_id, cst_code, cst_name, cst_password, cst_birthday, cst_sex, cst_email, cst_phone, 
+    cst_address, cst_idcard, create_time, cst_status
+  </sql>
+  <select id="selectByExample" parameterType="com.jxlg.logistic.sys.entity.CustomExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sys_cst
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_cst
+    where cst_id = #{cstId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_cst
+    where cst_id = #{cstId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.sys.entity.CustomExample">
+    delete from sys_cst
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jxlg.logistic.sys.entity.Custom">
+    insert into sys_cst (cst_id, cst_code, cst_name, 
+      cst_password, cst_birthday, cst_sex, 
+      cst_email, cst_phone, cst_address, 
+      cst_idcard, create_time, cst_status
+      )
+    values (#{cstId,jdbcType=VARCHAR}, #{cstCode,jdbcType=VARCHAR}, #{cstName,jdbcType=VARCHAR}, 
+      #{cstPassword,jdbcType=VARCHAR}, #{cstBirthday,jdbcType=DATE}, #{cstSex,jdbcType=VARCHAR}, 
+      #{cstEmail,jdbcType=VARCHAR}, #{cstPhone,jdbcType=VARCHAR}, #{cstAddress,jdbcType=VARCHAR}, 
+      #{cstIdcard,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{cstStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.sys.entity.Custom">
+    insert into sys_cst
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cstId != null">
+        cst_id,
+      </if>
+      <if test="cstCode != null">
+        cst_code,
+      </if>
+      <if test="cstName != null">
+        cst_name,
+      </if>
+      <if test="cstPassword != null">
+        cst_password,
+      </if>
+      <if test="cstBirthday != null">
+        cst_birthday,
+      </if>
+      <if test="cstSex != null">
+        cst_sex,
+      </if>
+      <if test="cstEmail != null">
+        cst_email,
+      </if>
+      <if test="cstPhone != null">
+        cst_phone,
+      </if>
+      <if test="cstAddress != null">
+        cst_address,
+      </if>
+      <if test="cstIdcard != null">
+        cst_idcard,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="cstStatus != null">
+        cst_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cstId != null">
+        #{cstId,jdbcType=VARCHAR},
+      </if>
+      <if test="cstCode != null">
+        #{cstCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cstName != null">
+        #{cstName,jdbcType=VARCHAR},
+      </if>
+      <if test="cstPassword != null">
+        #{cstPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="cstBirthday != null">
+        #{cstBirthday,jdbcType=DATE},
+      </if>
+      <if test="cstSex != null">
+        #{cstSex,jdbcType=VARCHAR},
+      </if>
+      <if test="cstEmail != null">
+        #{cstEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="cstPhone != null">
+        #{cstPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cstAddress != null">
+        #{cstAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cstIdcard != null">
+        #{cstIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstStatus != null">
+        #{cstStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jxlg.logistic.sys.entity.CustomExample" resultType="java.lang.Long">
+    select count(*) from sys_cst
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_cst
+    <set>
+      <if test="record.cstId != null">
+        cst_id = #{record.cstId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cstCode != null">
+        cst_code = #{record.cstCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cstName != null">
+        cst_name = #{record.cstName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cstPassword != null">
+        cst_password = #{record.cstPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cstBirthday != null">
+        cst_birthday = #{record.cstBirthday,jdbcType=DATE},
+      </if>
+      <if test="record.cstSex != null">
+        cst_sex = #{record.cstSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cstEmail != null">
+        cst_email = #{record.cstEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cstPhone != null">
+        cst_phone = #{record.cstPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cstAddress != null">
+        cst_address = #{record.cstAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cstIdcard != null">
+        cst_idcard = #{record.cstIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cstStatus != null">
+        cst_status = #{record.cstStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_cst
+    set cst_id = #{record.cstId,jdbcType=VARCHAR},
+      cst_code = #{record.cstCode,jdbcType=VARCHAR},
+      cst_name = #{record.cstName,jdbcType=VARCHAR},
+      cst_password = #{record.cstPassword,jdbcType=VARCHAR},
+      cst_birthday = #{record.cstBirthday,jdbcType=DATE},
+      cst_sex = #{record.cstSex,jdbcType=VARCHAR},
+      cst_email = #{record.cstEmail,jdbcType=VARCHAR},
+      cst_phone = #{record.cstPhone,jdbcType=VARCHAR},
+      cst_address = #{record.cstAddress,jdbcType=VARCHAR},
+      cst_idcard = #{record.cstIdcard,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      cst_status = #{record.cstStatus,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.sys.entity.Custom">
+    update sys_cst
+    <set>
+      <if test="cstCode != null">
+        cst_code = #{cstCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cstName != null">
+        cst_name = #{cstName,jdbcType=VARCHAR},
+      </if>
+      <if test="cstPassword != null">
+        cst_password = #{cstPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="cstBirthday != null">
+        cst_birthday = #{cstBirthday,jdbcType=DATE},
+      </if>
+      <if test="cstSex != null">
+        cst_sex = #{cstSex,jdbcType=VARCHAR},
+      </if>
+      <if test="cstEmail != null">
+        cst_email = #{cstEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="cstPhone != null">
+        cst_phone = #{cstPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="cstAddress != null">
+        cst_address = #{cstAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cstIdcard != null">
+        cst_idcard = #{cstIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cstStatus != null">
+        cst_status = #{cstStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cst_id = #{cstId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.sys.entity.Custom">
+    update sys_cst
+    set cst_code = #{cstCode,jdbcType=VARCHAR},
+      cst_name = #{cstName,jdbcType=VARCHAR},
+      cst_password = #{cstPassword,jdbcType=VARCHAR},
+      cst_birthday = #{cstBirthday,jdbcType=DATE},
+      cst_sex = #{cstSex,jdbcType=VARCHAR},
+      cst_email = #{cstEmail,jdbcType=VARCHAR},
+      cst_phone = #{cstPhone,jdbcType=VARCHAR},
+      cst_address = #{cstAddress,jdbcType=VARCHAR},
+      cst_idcard = #{cstIdcard,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      cst_status = #{cstStatus,jdbcType=VARCHAR}
+    where cst_id = #{cstId,jdbcType=VARCHAR}
+  </update>
+</mapper>
