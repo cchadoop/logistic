@@ -36,7 +36,7 @@ public class AdminAction {
 
 	@RequestMapping("index")
 	public String page() {
-		return "admin/index";
+		return "admin/index_layer";
 	}
 
 	@RequestMapping("/login")
