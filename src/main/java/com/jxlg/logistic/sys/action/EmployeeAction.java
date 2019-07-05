@@ -25,9 +25,10 @@ import com.jxlg.logistic.data.entity.DataDictionaryDetail;
 import com.jxlg.logistic.data.entity.DataDictionaryDetailExample;
 import com.jxlg.logistic.data.entity.DataDictionaryDetailExample.Criteria;
 import com.jxlg.logistic.data.service.IDataDictionaryDetailService;
+import com.jxlg.logistic.repository.EmployeeMongoRepository;
 import com.jxlg.logistic.sys.condition.EmployeeCondition;
 import com.jxlg.logistic.sys.entity.Employee;
-import com.jxlg.logistic.sys.service.IEmployeeJpaService;
+import com.jxlg.logistic.sys.service.IEmployeeEsService;
 import com.jxlg.logistic.sys.service.IEmployeeService;
 
 @RestController
@@ -41,7 +42,10 @@ public class EmployeeAction {
 	IDataDictionaryDetailService dataDictionaryDetailService;
 
 	@Autowired
-	private IEmployeeJpaService employeeJpaRepository;
+	private IEmployeeEsService employeeEsService;
+	
+	@Autowired
+	private EmployeeMongoRepository employeeMongoRepository;
 
 	@GetMapping("page")
 	public ModelAndView page(HttpServletRequest request, HttpServletResponse response) {
@@ -184,27 +188,29 @@ public class EmployeeAction {
 	}
 
 	// ElasticSearch TEST
+	// MongoDB TEST
 	@PostMapping("save")
 	public String save(Employee employee) {
-		employeeJpaRepository.save(employee);
+		employeeEsService.save(employee);
+		employeeMongoRepository.save(employee);
 		return "success";
 	}
 
 	@GetMapping("delete")
 	public String delete(String empId) {
-		employeeJpaRepository.deleteById(empId);
+		employeeEsService.deleteById(empId);
 		return "success";
 	}
 
 	@PostMapping("update")
 	public String update(Employee employee) {
-		employeeJpaRepository.save(employee);
+		employeeEsService.save(employee);
 		return "success";
 	}
 
 	@GetMapping("search")
 	public List<Employee> search(Integer pageNumber, Integer pageSize, String searchContent) {
-		return employeeJpaRepository.search(pageNumber, pageSize, searchContent);
+		return employeeEsService.search(pageNumber, pageSize, searchContent);
 	}
 
 }

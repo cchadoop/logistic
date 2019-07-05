@@ -1,7 +1,7 @@
 spring:
   cache:
     type: redis
-  redis:
+  redis:  #redis
     database: 1
     host: localhost
     port: 6379
@@ -14,8 +14,12 @@ spring:
         min-idle: 0
     timeout: 500
   data:
-    elasticsearch:
+    elasticsearch: #elasticsearch
       cluster-name: elasticsearch_psy
       cluster-nodes: 127.0.0.1:9300  #java客户端Port9300
       repositories:
         enabled: true
+    mongodb:  #mongodb
+      database: testMongodb
+      host: localhost
+      port: 27017

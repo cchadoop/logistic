@@ -66,7 +66,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	@Cacheable(value = "Employee", key = "#empId")
 	public Employee selectByPrimaryKey(String empId) {
 		long start = System.currentTimeMillis();
-		String key = "empId";
+		String key = empId;
 		// 判断缓存中是否有
 		// 有则从缓存中取
 		// 没有从DB中取,并存入缓存中
