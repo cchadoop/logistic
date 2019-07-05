@@ -27,6 +27,7 @@ import com.jxlg.logistic.data.entity.DataDictionaryDetailExample.Criteria;
 import com.jxlg.logistic.data.service.IDataDictionaryDetailService;
 import com.jxlg.logistic.sys.condition.EmployeeCondition;
 import com.jxlg.logistic.sys.entity.Employee;
+import com.jxlg.logistic.sys.service.IEmployeeJpaService;
 import com.jxlg.logistic.sys.service.IEmployeeService;
 
 @RestController
@@ -38,6 +39,9 @@ public class EmployeeAction {
 
 	@Autowired
 	IDataDictionaryDetailService dataDictionaryDetailService;
+
+	@Autowired
+	private IEmployeeJpaService employeeJpaRepository;
 
 	@GetMapping("page")
 	public ModelAndView page(HttpServletRequest request, HttpServletResponse response) {
@@ -115,17 +119,6 @@ public class EmployeeAction {
 		return map;
 	}
 
-	// @GetMapping("edit/{empId}")
-	// public ModelAndView edit(@PathParam("empId") String empId) {
-	// System.out.println(empId);
-	// ModelAndView modelAndView = new ModelAndView("admin/sys/emp_edit");
-	// return modelAndView;
-	// }
-	// @PostMapping("add")
-	// public ModelAndView add() {
-	// ModelAndView modelAndView = new ModelAndView("admin/sys/emp_edit");
-	// return modelAndView;
-	// }
 	@RequestMapping("edit")
 	public ModelAndView edit(@RequestParam(name = "empId", required = false) String empId) {
 		ModelAndView modelAndView = new ModelAndView("admin/sys/emp_edit");
@@ -177,7 +170,6 @@ public class EmployeeAction {
 	@PostMapping("saveAj")
 	public String saveAj(Employee employee, HttpServletRequest request, HttpServletResponse response) {
 		String result = null;
-		// customer.setAddress("no_pay");
 		try {
 			if (!StringUtils.isEmpty(employee.getEmpId())) {
 				employeeService.updateByPrimaryKeySelective(employee);
@@ -188,7 +180,31 @@ public class EmployeeAction {
 			ex.printStackTrace();
 			result = "保存失败";
 		}
-		// return "保存失败" ;
 		return result;
 	}
+
+	// ElasticSearch TEST
+	@PostMapping("save")
+	public String save(Employee employee) {
+		employeeJpaRepository.save(employee);
+		return "success";
+	}
+
+	@GetMapping("delete")
+	public String delete(String empId) {
+		employeeJpaRepository.deleteById(empId);
+		return "success";
+	}
+
+	@PostMapping("update")
+	public String update(Employee employee) {
+		employeeJpaRepository.save(employee);
+		return "success";
+	}
+
+	@GetMapping("search")
+	public List<Employee> search(Integer pageNumber, Integer pageSize, String searchContent) {
+		return employeeJpaRepository.search(pageNumber, pageSize, searchContent);
+	}
+
 }

@@ -4,7 +4,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+@Document(indexName = "testemployee",type = "employee")
 public class Employee implements Serializable {
+	@Id
     private String empId;
 
     private String empCode;
