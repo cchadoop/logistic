@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jxlg.logistic.delivery.entity.Deliveryspot;
-import com.jxlg.logistic.delivery.service.IDeliveryspotService;
-import com.jxlg.logistic.order.entity.Order;
-import com.jxlg.logistic.order.entity.OrderDetail;
-import com.jxlg.logistic.order.service.IOrderDetailService;
-import com.jxlg.logistic.order.service.IOrderService;
-import com.jxlg.logistic.sys.entity.Custom;
-import com.jxlg.logistic.sys.service.ICustomService;
-import com.jxlg.logistic.transport.entity.City;
-import com.jxlg.logistic.transport.service.ICityService;
+import com.jxlg.logistic.module.delivery.entity.Deliveryspot;
+import com.jxlg.logistic.module.delivery.service.IDeliveryspotService;
+import com.jxlg.logistic.module.order.entity.Order;
+import com.jxlg.logistic.module.order.entity.OrderDetail;
+import com.jxlg.logistic.module.order.service.IOrderDetailService;
+import com.jxlg.logistic.module.order.service.IOrderService;
+import com.jxlg.logistic.module.sys.entity.Custom;
+import com.jxlg.logistic.module.sys.service.ICustomService;
+import com.jxlg.logistic.module.transport.entity.City;
+import com.jxlg.logistic.module.transport.service.ICityService;
 
 @Controller
 @RequestMapping("/front/")
