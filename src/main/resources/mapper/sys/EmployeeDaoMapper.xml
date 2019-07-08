@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.sys.mapper.EmployeeDaoMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.sys.queryview.EmployeeQueryView">
+<mapper namespace="com.jxlg.logistic.module.sys.mapper.EmployeeDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.sys.queryview.EmployeeQueryView">
     <id column="emp_id" jdbcType="VARCHAR" property="empId" />
     <result column="emp_code" jdbcType="VARCHAR" property="empCode" />
     <result column="emp_account" jdbcType="VARCHAR" property="empAccount" />
@@ -23,7 +23,7 @@
     <result column="marryOptionLabel" jdbcType="VARCHAR" property="marryOptionLabel" />
   </resultMap>
  	
- <select id="listView" parameterType="com.jxlg.logistic.sys.condition.EmployeeCondition" resultMap="BaseResultMap">
+ <select id="listView" parameterType="com.jxlg.logistic.module.sys.condition.EmployeeCondition" resultMap="BaseResultMap">
  	select s.emp_id,s.emp_code,s.emp_account,s.emp_name,
 	s.emp_password,s.emp_sex,s.emp_birthday,
 	s.emp_live_address,s.emp_work_address,

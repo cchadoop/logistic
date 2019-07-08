@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.order.mapper.SuppilerDaoMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.order.queryview.SuppilerQueryView">
+<mapper namespace="com.jxlg.logistic.module.order.mapper.SuppilerDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.order.queryview.SuppilerQueryView">
     <id column="suppiler_id" jdbcType="VARCHAR" property="suppilerId" />
     <result column="suppiler_no" jdbcType="VARCHAR" property="suppilerNo" />
     <result column="suppiler_name" jdbcType="VARCHAR" property="suppilerName" />

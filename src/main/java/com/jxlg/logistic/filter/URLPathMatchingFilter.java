@@ -17,9 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jxlg.logistic.sys.entity.Employee;
-import com.jxlg.logistic.sys.entity.Power;
-import com.jxlg.logistic.sys.service.IPowerService;
+import com.jxlg.logistic.module.sys.entity.Employee;
+import com.jxlg.logistic.module.sys.entity.Power;
+import com.jxlg.logistic.module.sys.service.IPowerService;
 import com.jxlg.logistic.utils.SpringContextUtil;
 public class URLPathMatchingFilter extends PathMatchingFilter{
 	

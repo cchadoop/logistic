@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.transport.mapper.LinedetailMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.transport.entity.Linedetail">
+<mapper namespace="com.jxlg.logistic.module.transport.mapper.LinedetailMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.transport.entity.Linedetail">
     <id column="linedetail_id" jdbcType="VARCHAR" property="linedetailId" />
     <result column="line_id" jdbcType="VARCHAR" property="lineId" />
     <result column="deliveryspot_id" jdbcType="VARCHAR" property="deliveryspotId" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List">
     linedetail_id, line_id, deliveryspot_id, line_index
   </sql>
-  <select id="selectByExample" parameterType="com.jxlg.logistic.transport.entity.LinedetailExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jxlg.logistic.module.transport.entity.LinedetailExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,19 +93,19 @@
     delete from t_linedetail
     where linedetail_id = #{linedetailId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jxlg.logistic.transport.entity.LinedetailExample">
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.module.transport.entity.LinedetailExample">
     delete from t_linedetail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jxlg.logistic.transport.entity.Linedetail">
+  <insert id="insert" parameterType="com.jxlg.logistic.module.transport.entity.Linedetail">
     insert into t_linedetail (linedetail_id, line_id, deliveryspot_id, 
       line_index)
     values (#{linedetailId,jdbcType=VARCHAR}, #{lineId,jdbcType=VARCHAR}, #{deliveryspotId,jdbcType=VARCHAR}, 
       #{lineIndex,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.jxlg.logistic.transport.entity.Linedetail">
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.module.transport.entity.Linedetail">
     insert into t_linedetail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="linedetailId != null">
@@ -136,7 +136,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jxlg.logistic.transport.entity.LinedetailExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.jxlg.logistic.module.transport.entity.LinedetailExample" resultType="java.lang.Long">
     select count(*) from t_linedetail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -172,7 +172,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.transport.entity.Linedetail">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.module.transport.entity.Linedetail">
     update t_linedetail
     <set>
       <if test="lineId != null">
@@ -187,7 +187,7 @@
     </set>
     where linedetail_id = #{linedetailId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.transport.entity.Linedetail">
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.module.transport.entity.Linedetail">
     update t_linedetail
     set line_id = #{lineId,jdbcType=VARCHAR},
       deliveryspot_id = #{deliveryspotId,jdbcType=VARCHAR},

@@ -8,7 +8,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 @SpringBootApplication
 @ServletComponentScan
-@MapperScan("com.jxlg.logistic.*.mapper")
+@MapperScan("com.jxlg.logistic.module.*.mapper")
 @EnableCaching
 public class LogisticApplication {
 

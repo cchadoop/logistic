@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.delivery.mapper.DeliveryspotDaoMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.delivery.queryview.DeliveryspotQueryView">
+<mapper namespace="com.jxlg.logistic.module.delivery.mapper.DeliveryspotDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.delivery.queryview.DeliveryspotQueryView">
     <id column="deliveryspot_id" jdbcType="VARCHAR" property="deliveryspotId" />
     <result column="deliveryspot_no" jdbcType="VARCHAR" property="deliveryspotNo" />
     <result column="deliveryspot_name" jdbcType="VARCHAR" property="deliveryspotName" />
@@ -21,7 +21,7 @@
     <result column="emp_name" jdbcType="VARCHAR" property="empName" />
     <result column="deliveryStatusOptionLabel" jdbcType="VARCHAR" property="deliveryStatusOptionLabel" />
   </resultMap>
-  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.delivery.condition.DeliveryspotCondition">
+  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.module.delivery.condition.DeliveryspotCondition">
   	SELECT
 	d.*,
 	c.city_name,

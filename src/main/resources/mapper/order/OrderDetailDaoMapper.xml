@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.order.mapper.OrderDetailDaoMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.order.queryview.OrderDetailQueryView">
+<mapper namespace="com.jxlg.logistic.module.order.mapper.OrderDetailDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.order.queryview.OrderDetailQueryView">
     <id column="orderdetail_id" jdbcType="VARCHAR" property="orderdetailId" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
@@ -18,7 +18,7 @@
     <result column="suppiler_no" jdbcType="VARCHAR" property="suppilerNo" />
   </resultMap>
   
-  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.order.condition.OrderDetailCondition">
+  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.module.order.condition.OrderDetailCondition">
   	SELECT
 	od.*,
 	o.order_no,

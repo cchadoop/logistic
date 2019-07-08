@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.data.mapper.DataDictionaryDetailMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.data.entity.DataDictionaryDetail">
+<mapper namespace="com.jxlg.logistic.module.data.mapper.DataDictionaryDetailMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.data.entity.DataDictionaryDetail">
     <id column="DICTIONARY_DETAIL_ID" jdbcType="VARCHAR" property="dictionaryDetailId" />
     <result column="DATA_DICTIONARY_ID" jdbcType="VARCHAR" property="dataDictionaryId" />
     <result column="DICTIONARY_DETAIL_CODE" jdbcType="VARCHAR" property="dictionaryDetailCode" />
@@ -71,7 +71,7 @@
     DICTIONARY_DETAIL_ID, DATA_DICTIONARY_ID, DICTIONARY_DETAIL_CODE, DICTIONARY_DETAIL_LABEL, 
     DICTIONARY_DETAIL_XH, OPTION_LABEL
   </sql>
-  <select id="selectByExample" parameterType="com.jxlg.logistic.data.entity.DataDictionaryDetailExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jxlg.logistic.module.data.entity.DataDictionaryDetailExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -96,13 +96,13 @@
     delete from data_dictionary_detail
     where DICTIONARY_DETAIL_ID = #{dictionaryDetailId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jxlg.logistic.data.entity.DataDictionaryDetailExample">
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.module.data.entity.DataDictionaryDetailExample">
     delete from data_dictionary_detail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jxlg.logistic.data.entity.DataDictionaryDetail">
+  <insert id="insert" parameterType="com.jxlg.logistic.module.data.entity.DataDictionaryDetail">
     insert into data_dictionary_detail (DICTIONARY_DETAIL_ID, DATA_DICTIONARY_ID, 
       DICTIONARY_DETAIL_CODE, DICTIONARY_DETAIL_LABEL, 
       DICTIONARY_DETAIL_XH, OPTION_LABEL)
@@ -110,7 +110,7 @@
       #{dictionaryDetailCode,jdbcType=VARCHAR}, #{dictionaryDetailLabel,jdbcType=VARCHAR}, 
       #{dictionaryDetailXh,jdbcType=INTEGER}, #{optionLabel,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jxlg.logistic.data.entity.DataDictionaryDetail">
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.module.data.entity.DataDictionaryDetail">
     insert into data_dictionary_detail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="dictionaryDetailId != null">
@@ -153,7 +153,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jxlg.logistic.data.entity.DataDictionaryDetailExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.jxlg.logistic.module.data.entity.DataDictionaryDetailExample" resultType="java.lang.Long">
     select count(*) from data_dictionary_detail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -197,7 +197,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.data.entity.DataDictionaryDetail">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.module.data.entity.DataDictionaryDetail">
     update data_dictionary_detail
     <set>
       <if test="dataDictionaryId != null">
@@ -218,7 +218,7 @@
     </set>
     where DICTIONARY_DETAIL_ID = #{dictionaryDetailId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.data.entity.DataDictionaryDetail">
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.module.data.entity.DataDictionaryDetail">
     update data_dictionary_detail
     set DATA_DICTIONARY_ID = #{dataDictionaryId,jdbcType=VARCHAR},
       DICTIONARY_DETAIL_CODE = #{dictionaryDetailCode,jdbcType=VARCHAR},

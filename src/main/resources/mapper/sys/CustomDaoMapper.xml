@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.sys.mapper.CustomDaoMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.sys.queryview.CustomQueryView">
+<mapper namespace="com.jxlg.logistic.module.sys.mapper.CustomDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.sys.queryview.CustomQueryView">
     <id column="cst_id" jdbcType="VARCHAR" property="cstId" />
     <result column="cst_code" jdbcType="VARCHAR" property="cstCode" />
     <result column="cst_name" jdbcType="VARCHAR" property="cstName" />
@@ -17,7 +17,7 @@
     <result column="cstStatusOptionLabel" jdbcType="VARCHAR" property="cstStatusOptionLabel" />
   </resultMap>
   
-  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.sys.entity.Custom">
+  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.module.sys.entity.Custom">
   	select s.*,d.OPTION_LABEL as cstStatusOptionLabel from sys_cst s
 	left join data_dictionary_detail d on
 	s.cst_status = d.DICTIONARY_DETAIL_LABEL

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.delivery.mapper.HandlerDaoMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.delivery.queryview.HandlerQueryView">
+<mapper namespace="com.jxlg.logistic.module.delivery.mapper.HandlerDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.delivery.queryview.HandlerQueryView">
     <id column="handler_id" jdbcType="VARCHAR" property="handlerId" />
     <result column="handler_no" jdbcType="VARCHAR" property="handlerNo" />
     <result column="emp_id" jdbcType="VARCHAR" property="empId" />

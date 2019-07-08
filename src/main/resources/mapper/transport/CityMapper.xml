@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.transport.mapper.CityMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.transport.entity.City">
+<mapper namespace="com.jxlg.logistic.module.transport.mapper.CityMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.transport.entity.City">
     <id column="city_id" jdbcType="VARCHAR" property="cityId" />
     <result column="city_name" jdbcType="VARCHAR" property="cityName" />
     <result column="province_id" jdbcType="VARCHAR" property="provinceId" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     city_id, city_name, province_id
   </sql>
-  <select id="selectByExample" parameterType="com.jxlg.logistic.transport.entity.CityExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jxlg.logistic.module.transport.entity.CityExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -92,19 +92,19 @@
     delete from t_city
     where city_id = #{cityId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jxlg.logistic.transport.entity.CityExample">
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.module.transport.entity.CityExample">
     delete from t_city
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jxlg.logistic.transport.entity.City">
+  <insert id="insert" parameterType="com.jxlg.logistic.module.transport.entity.City">
     insert into t_city (city_id, city_name, province_id
       )
     values (#{cityId,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, #{provinceId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jxlg.logistic.transport.entity.City">
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.module.transport.entity.City">
     insert into t_city
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="cityId != null">
@@ -129,7 +129,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jxlg.logistic.transport.entity.CityExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.jxlg.logistic.module.transport.entity.CityExample" resultType="java.lang.Long">
     select count(*) from t_city
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -161,7 +161,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.transport.entity.City">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.module.transport.entity.City">
     update t_city
     <set>
       <if test="cityName != null">
@@ -173,7 +173,7 @@
     </set>
     where city_id = #{cityId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.transport.entity.City">
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.module.transport.entity.City">
     update t_city
     set city_name = #{cityName,jdbcType=VARCHAR},
       province_id = #{provinceId,jdbcType=VARCHAR}

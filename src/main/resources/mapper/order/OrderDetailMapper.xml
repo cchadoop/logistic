@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.order.mapper.OrderDetailMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.order.entity.OrderDetail">
+<mapper namespace="com.jxlg.logistic.module.order.mapper.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.order.entity.OrderDetail">
     <id column="orderdetail_id" jdbcType="VARCHAR" property="orderdetailId" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
     <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
@@ -76,7 +76,7 @@
     orderdetail_id, order_id, goods_name, `number`, volume, weight, total_price, create_time, 
     update_time, deliveryspot_id, suppiler_id
   </sql>
-  <select id="selectByExample" parameterType="com.jxlg.logistic.order.entity.OrderDetailExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jxlg.logistic.module.order.entity.OrderDetailExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -101,13 +101,13 @@
     delete from o_orderdetail
     where orderdetail_id = #{orderdetailId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jxlg.logistic.order.entity.OrderDetailExample">
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.module.order.entity.OrderDetailExample">
     delete from o_orderdetail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jxlg.logistic.order.entity.OrderDetail">
+  <insert id="insert" parameterType="com.jxlg.logistic.module.order.entity.OrderDetail">
     insert into o_orderdetail (orderdetail_id, order_id, goods_name, 
       `number`, volume, weight, 
       total_price, create_time, update_time, 
@@ -117,7 +117,7 @@
       #{totalPrice,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{deliveryspotId,jdbcType=VARCHAR}, #{suppilerId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jxlg.logistic.order.entity.OrderDetail">
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.module.order.entity.OrderDetail">
     insert into o_orderdetail
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="orderdetailId != null">
@@ -190,7 +190,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jxlg.logistic.order.entity.OrderDetailExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.jxlg.logistic.module.order.entity.OrderDetailExample" resultType="java.lang.Long">
     select count(*) from o_orderdetail
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -254,7 +254,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.order.entity.OrderDetail">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.module.order.entity.OrderDetail">
     update o_orderdetail
     <set>
       <if test="orderId != null">
@@ -290,7 +290,7 @@
     </set>
     where orderdetail_id = #{orderdetailId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.order.entity.OrderDetail">
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.module.order.entity.OrderDetail">
     update o_orderdetail
     set order_id = #{orderId,jdbcType=VARCHAR},
       goods_name = #{goodsName,jdbcType=VARCHAR},

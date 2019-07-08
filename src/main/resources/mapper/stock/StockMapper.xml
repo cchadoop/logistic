@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.stock.mapper.StockMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.stock.entity.Stock">
+<mapper namespace="com.jxlg.logistic.module.stock.mapper.StockMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.stock.entity.Stock">
     <id column="stock_id" jdbcType="VARCHAR" property="stockId" />
     <result column="stock_no" jdbcType="VARCHAR" property="stockNo" />
     <result column="stock_name" jdbcType="VARCHAR" property="stockName" />
@@ -80,7 +80,7 @@
     stock_id, stock_no, stock_name, stock_addr, cst_id, order_id, receive_id, instock_time, 
     `position`, pkgs, weight, CBM, L, W, H
   </sql>
-  <select id="selectByExample" parameterType="com.jxlg.logistic.stock.entity.StockExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jxlg.logistic.module.stock.entity.StockExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -105,13 +105,13 @@
     delete from s_stock
     where stock_id = #{stockId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jxlg.logistic.stock.entity.StockExample">
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.module.stock.entity.StockExample">
     delete from s_stock
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jxlg.logistic.stock.entity.Stock">
+  <insert id="insert" parameterType="com.jxlg.logistic.module.stock.entity.Stock">
     insert into s_stock (stock_id, stock_no, stock_name, 
       stock_addr, cst_id, order_id, 
       receive_id, instock_time, `position`, 
@@ -123,7 +123,7 @@
       #{pkgs,jdbcType=INTEGER}, #{weight,jdbcType=DECIMAL}, #{cbm,jdbcType=DECIMAL}, 
       #{l,jdbcType=DECIMAL}, #{w,jdbcType=DECIMAL}, #{h,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.jxlg.logistic.stock.entity.Stock">
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.module.stock.entity.Stock">
     insert into s_stock
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="stockId != null">
@@ -220,7 +220,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jxlg.logistic.stock.entity.StockExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.jxlg.logistic.module.stock.entity.StockExample" resultType="java.lang.Long">
     select count(*) from s_stock
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -300,7 +300,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.stock.entity.Stock">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.module.stock.entity.Stock">
     update s_stock
     <set>
       <if test="stockNo != null">
@@ -348,7 +348,7 @@
     </set>
     where stock_id = #{stockId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.stock.entity.Stock">
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.module.stock.entity.Stock">
     update s_stock
     set stock_no = #{stockNo,jdbcType=VARCHAR},
       stock_name = #{stockName,jdbcType=VARCHAR},

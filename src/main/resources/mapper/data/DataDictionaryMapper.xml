@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.data.mapper.DataDictionaryMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.data.entity.DataDictionary">
+<mapper namespace="com.jxlg.logistic.module.data.mapper.DataDictionaryMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.data.entity.DataDictionary">
     <id column="data_dictionary_id" jdbcType="VARCHAR" property="dataDictionaryId" />
     <result column="data_dictionary_code" jdbcType="VARCHAR" property="dataDictionaryCode" />
     <result column="data_dictionary_label" jdbcType="VARCHAR" property="dataDictionaryLabel" />
@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     data_dictionary_id, data_dictionary_code, data_dictionary_label
   </sql>
-  <select id="selectByExample" parameterType="com.jxlg.logistic.data.entity.DataDictionaryExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jxlg.logistic.module.data.entity.DataDictionaryExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -92,19 +92,19 @@
     delete from data_dictionary
     where data_dictionary_id = #{dataDictionaryId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jxlg.logistic.data.entity.DataDictionaryExample">
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.module.data.entity.DataDictionaryExample">
     delete from data_dictionary
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jxlg.logistic.data.entity.DataDictionary">
+  <insert id="insert" parameterType="com.jxlg.logistic.module.data.entity.DataDictionary">
     insert into data_dictionary (data_dictionary_id, data_dictionary_code, 
       data_dictionary_label)
     values (#{dataDictionaryId,jdbcType=VARCHAR}, #{dataDictionaryCode,jdbcType=VARCHAR}, 
       #{dataDictionaryLabel,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jxlg.logistic.data.entity.DataDictionary">
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.module.data.entity.DataDictionary">
     insert into data_dictionary
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="dataDictionaryId != null">
@@ -129,7 +129,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jxlg.logistic.data.entity.DataDictionaryExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.jxlg.logistic.module.data.entity.DataDictionaryExample" resultType="java.lang.Long">
     select count(*) from data_dictionary
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -161,7 +161,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.data.entity.DataDictionary">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.module.data.entity.DataDictionary">
     update data_dictionary
     <set>
       <if test="dataDictionaryCode != null">
@@ -173,7 +173,7 @@
     </set>
     where data_dictionary_id = #{dataDictionaryId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.data.entity.DataDictionary">
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.module.data.entity.DataDictionary">
     update data_dictionary
     set data_dictionary_code = #{dataDictionaryCode,jdbcType=VARCHAR},
       data_dictionary_label = #{dataDictionaryLabel,jdbcType=VARCHAR}

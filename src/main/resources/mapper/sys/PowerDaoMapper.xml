@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.sys.mapper.PowerDaoMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.sys.queryview.PowerQueryView">
+<mapper namespace="com.jxlg.logistic.module.sys.mapper.PowerDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.sys.queryview.PowerQueryView">
     <id column="power_id" jdbcType="VARCHAR" property="powerId" />
     <result column="module_id" jdbcType="VARCHAR" property="moduleId" />
     <result column="name" jdbcType="VARCHAR" property="name" />

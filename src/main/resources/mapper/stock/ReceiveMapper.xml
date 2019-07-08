@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.stock.mapper.ReceiveMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.stock.entity.Receive">
+<mapper namespace="com.jxlg.logistic.module.stock.mapper.ReceiveMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.stock.entity.Receive">
     <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
     <result column="receive_no" jdbcType="VARCHAR" property="receiveNo" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
@@ -75,7 +75,7 @@
     receive_id, receive_no, order_id, receive_person, receive_time, receive_status, receive_way, 
     confirm_time, confirm_addr, confirm_person
   </sql>
-  <select id="selectByExample" parameterType="com.jxlg.logistic.stock.entity.ReceiveExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jxlg.logistic.module.stock.entity.ReceiveExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -100,13 +100,13 @@
     delete from s_receive
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jxlg.logistic.stock.entity.ReceiveExample">
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.module.stock.entity.ReceiveExample">
     delete from s_receive
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jxlg.logistic.stock.entity.Receive">
+  <insert id="insert" parameterType="com.jxlg.logistic.module.stock.entity.Receive">
     insert into s_receive (receive_id, receive_no, order_id, 
       receive_person, receive_time, receive_status, 
       receive_way, confirm_time, confirm_addr, 
@@ -116,7 +116,7 @@
       #{receiveWay,jdbcType=VARCHAR}, #{confirmTime,jdbcType=TIMESTAMP}, #{confirmAddr,jdbcType=VARCHAR}, 
       #{confirmPerson,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jxlg.logistic.stock.entity.Receive">
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.module.stock.entity.Receive">
     insert into s_receive
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="receiveId != null">
@@ -183,7 +183,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jxlg.logistic.stock.entity.ReceiveExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.jxlg.logistic.module.stock.entity.ReceiveExample" resultType="java.lang.Long">
     select count(*) from s_receive
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -243,7 +243,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.stock.entity.Receive">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.module.stock.entity.Receive">
     update s_receive
     <set>
       <if test="receiveNo != null">
@@ -276,7 +276,7 @@
     </set>
     where receive_id = #{receiveId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.stock.entity.Receive">
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.module.stock.entity.Receive">
     update s_receive
     set receive_no = #{receiveNo,jdbcType=VARCHAR},
       order_id = #{orderId,jdbcType=VARCHAR},

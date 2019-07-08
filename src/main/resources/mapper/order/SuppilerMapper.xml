@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.order.mapper.SuppilerMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.order.entity.Suppiler">
+<mapper namespace="com.jxlg.logistic.module.order.mapper.SuppilerMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.order.entity.Suppiler">
     <id column="suppiler_id" jdbcType="VARCHAR" property="suppilerId" />
     <result column="suppiler_no" jdbcType="VARCHAR" property="suppilerNo" />
     <result column="suppiler_name" jdbcType="VARCHAR" property="suppilerName" />
@@ -77,7 +77,7 @@
     suppiler_id, suppiler_no, suppiler_name, suppiler_type, suppiler_addr, linkman, linkman_tel, 
     linkman_email, internetsite, isvail, isdel, remark
   </sql>
-  <select id="selectByExample" parameterType="com.jxlg.logistic.order.entity.SuppilerExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jxlg.logistic.module.order.entity.SuppilerExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,13 +102,13 @@
     delete from o_suppiler
     where suppiler_id = #{suppilerId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jxlg.logistic.order.entity.SuppilerExample">
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.module.order.entity.SuppilerExample">
     delete from o_suppiler
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jxlg.logistic.order.entity.Suppiler">
+  <insert id="insert" parameterType="com.jxlg.logistic.module.order.entity.Suppiler">
     insert into o_suppiler (suppiler_id, suppiler_no, suppiler_name, 
       suppiler_type, suppiler_addr, linkman, 
       linkman_tel, linkman_email, internetsite, 
@@ -120,7 +120,7 @@
       #{isvail,jdbcType=VARCHAR}, #{isdel,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jxlg.logistic.order.entity.Suppiler">
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.module.order.entity.Suppiler">
     insert into o_suppiler
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="suppilerId != null">
@@ -199,7 +199,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jxlg.logistic.order.entity.SuppilerExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.jxlg.logistic.module.order.entity.SuppilerExample" resultType="java.lang.Long">
     select count(*) from o_suppiler
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -267,7 +267,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.order.entity.Suppiler">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.module.order.entity.Suppiler">
     update o_suppiler
     <set>
       <if test="suppilerNo != null">
@@ -306,7 +306,7 @@
     </set>
     where suppiler_id = #{suppilerId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.order.entity.Suppiler">
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.module.order.entity.Suppiler">
     update o_suppiler
     set suppiler_no = #{suppilerNo,jdbcType=VARCHAR},
       suppiler_name = #{suppilerName,jdbcType=VARCHAR},

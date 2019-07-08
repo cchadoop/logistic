@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.transport.mapper.CarMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.transport.entity.Car">
+<mapper namespace="com.jxlg.logistic.module.transport.mapper.CarMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.transport.entity.Car">
     <id column="car_id" jdbcType="VARCHAR" property="carId" />
     <result column="car_no" jdbcType="VARCHAR" property="carNo" />
     <result column="cartype_id" jdbcType="VARCHAR" property="cartypeId" />
@@ -77,7 +77,7 @@
     car_id, car_no, cartype_id, tonnage, image, buy_time, leave_time, car_status, line_id, 
     driver_id, company, remark
   </sql>
-  <select id="selectByExample" parameterType="com.jxlg.logistic.transport.entity.CarExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jxlg.logistic.module.transport.entity.CarExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,13 +102,13 @@
     delete from t_car
     where car_id = #{carId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jxlg.logistic.transport.entity.CarExample">
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.module.transport.entity.CarExample">
     delete from t_car
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jxlg.logistic.transport.entity.Car">
+  <insert id="insert" parameterType="com.jxlg.logistic.module.transport.entity.Car">
     insert into t_car (car_id, car_no, cartype_id, 
       tonnage, image, buy_time, 
       leave_time, car_status, line_id, 
@@ -120,7 +120,7 @@
       #{driverId,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.jxlg.logistic.transport.entity.Car">
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.module.transport.entity.Car">
     insert into t_car
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="carId != null">
@@ -199,7 +199,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jxlg.logistic.transport.entity.CarExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.jxlg.logistic.module.transport.entity.CarExample" resultType="java.lang.Long">
     select count(*) from t_car
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -267,7 +267,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.transport.entity.Car">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.module.transport.entity.Car">
     update t_car
     <set>
       <if test="carNo != null">
@@ -306,7 +306,7 @@
     </set>
     where car_id = #{carId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.transport.entity.Car">
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.module.transport.entity.Car">
     update t_car
     set car_no = #{carNo,jdbcType=VARCHAR},
       cartype_id = #{cartypeId,jdbcType=VARCHAR},

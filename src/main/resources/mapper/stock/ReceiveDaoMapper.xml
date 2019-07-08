@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.stock.mapper.ReceiveDaoMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.stock.queryview.ReceiveQueryView">
+<mapper namespace="com.jxlg.logistic.module.stock.mapper.ReceiveDaoMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.stock.queryview.ReceiveQueryView">
     <id column="receive_id" jdbcType="VARCHAR" property="receiveId" />
     <result column="receive_no" jdbcType="VARCHAR" property="receiveNo" />
     <result column="order_id" jdbcType="VARCHAR" property="orderId" />
@@ -17,7 +17,7 @@
     <result column="receiveWayOptionLabel" jdbcType="VARCHAR" property="receiveWayOptionLabel" />
   </resultMap>
   
-  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.stock.condition.ReceiveCondition">
+  <select id="listView" resultMap="BaseResultMap" parameterType="com.jxlg.logistic.module.stock.condition.ReceiveCondition">
   	SELECT
 	r.*,
 	o.order_no,

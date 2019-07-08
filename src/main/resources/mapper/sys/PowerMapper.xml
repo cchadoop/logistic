@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jxlg.logistic.sys.mapper.PowerMapper">
-  <resultMap id="BaseResultMap" type="com.jxlg.logistic.sys.entity.Power">
+<mapper namespace="com.jxlg.logistic.module.sys.mapper.PowerMapper">
+  <resultMap id="BaseResultMap" type="com.jxlg.logistic.module.sys.entity.Power">
     <id column="power_id" jdbcType="VARCHAR" property="powerId" />
     <result column="module_id" jdbcType="VARCHAR" property="moduleId" />
     <result column="power_name" jdbcType="VARCHAR" property="powerName" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List">
     power_id, module_id, power_name, url
   </sql>
-  <select id="selectByExample" parameterType="com.jxlg.logistic.sys.entity.PowerExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.jxlg.logistic.module.sys.entity.PowerExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -93,19 +93,19 @@
     delete from sys_power
     where power_id = #{powerId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.jxlg.logistic.sys.entity.PowerExample">
+  <delete id="deleteByExample" parameterType="com.jxlg.logistic.module.sys.entity.PowerExample">
     delete from sys_power
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.jxlg.logistic.sys.entity.Power">
+  <insert id="insert" parameterType="com.jxlg.logistic.module.sys.entity.Power">
     insert into sys_power (power_id, module_id, power_name, 
       url)
     values (#{powerId,jdbcType=VARCHAR}, #{moduleId,jdbcType=VARCHAR}, #{powerName,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.jxlg.logistic.sys.entity.Power">
+  <insert id="insertSelective" parameterType="com.jxlg.logistic.module.sys.entity.Power">
     insert into sys_power
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="powerId != null">
@@ -136,7 +136,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.jxlg.logistic.sys.entity.PowerExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.jxlg.logistic.module.sys.entity.PowerExample" resultType="java.lang.Long">
     select count(*) from sys_power
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -172,7 +172,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.sys.entity.Power">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxlg.logistic.module.sys.entity.Power">
     update sys_power
     <set>
       <if test="moduleId != null">
@@ -187,7 +187,7 @@
     </set>
     where power_id = #{powerId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.sys.entity.Power">
+  <update id="updateByPrimaryKey" parameterType="com.jxlg.logistic.module.sys.entity.Power">
     update sys_power
     set module_id = #{moduleId,jdbcType=VARCHAR},
       power_name = #{powerName,jdbcType=VARCHAR},
