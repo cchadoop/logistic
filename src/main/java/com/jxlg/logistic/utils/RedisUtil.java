@@ -12,6 +12,7 @@ public class RedisUtil {
 	private static RedisTemplate<String, Object> redisTemplate;
 
 	public static void set(String key, Object value) {
+		@SuppressWarnings("rawtypes")
 		RedisSerializer serializer = new StringRedisSerializer();
 		// 设置key编码方式
 		redisTemplate.setKeySerializer(serializer);
