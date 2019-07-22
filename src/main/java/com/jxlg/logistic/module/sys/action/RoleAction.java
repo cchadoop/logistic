@@ -58,7 +58,7 @@ public class RoleAction {
 //		return map;
 //	}
 	@RequestMapping("pageAjax")
-	public Map<String,Object> pageAjax(@RequestParam Map roleMap){
+	public Map<String,Object> pageAjax(@RequestParam Map<String,Object> roleMap){
 		 String pageNum =  (String) roleMap.get("page");
 		 String pageSize = (String) roleMap.get("limit");
 		 PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));

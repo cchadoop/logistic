@@ -25,7 +25,7 @@ import com.jxlg.logistic.module.data.entity.DataDictionaryDetail;
 import com.jxlg.logistic.module.data.entity.DataDictionaryDetailExample;
 import com.jxlg.logistic.module.data.entity.DataDictionaryDetailExample.Criteria;
 import com.jxlg.logistic.module.data.service.IDataDictionaryDetailService;
-import com.jxlg.logistic.repository.EmployeeMongoRepository;
+import com.jxlg.logistic.module.repository.EmployeeMongoRepository;
 import com.jxlg.logistic.module.sys.condition.EmployeeCondition;
 import com.jxlg.logistic.module.sys.entity.Employee;
 import com.jxlg.logistic.module.sys.service.IEmployeeEsService;

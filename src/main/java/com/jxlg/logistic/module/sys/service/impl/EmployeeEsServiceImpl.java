@@ -18,7 +18,7 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.jxlg.logistic.repository.EmployeeEsRepository;
+import com.jxlg.logistic.module.repository.EmployeeEsRepository;
 import com.jxlg.logistic.module.sys.entity.Employee;
 import com.jxlg.logistic.module.sys.service.IEmployeeEsService;
 
@@ -47,6 +47,7 @@ public class EmployeeEsServiceImpl implements IEmployeeEsService{
 		if (StringUtils.isEmpty(pageSize)) {
 			pageSize = 10;
 		}
+		@SuppressWarnings("deprecation")
 		Pageable pageable = new PageRequest(pageNumber, pageSize);
 		// 权重查询
 		List<FunctionScoreQueryBuilder.FilterFunctionBuilder> filterFunctionBuilders = new ArrayList<>();
